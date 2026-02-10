@@ -1,0 +1,43 @@
+# SafeFeed Action - Official Use & License Statement
+
+**Project:** SafeFeed Action - Global Emergency Recall Response
+**License:** [CC BY-NC 4.0 (Attribution-NonCommercial 4.0 International)](https://creativecommons.org/licenses/by-nc/4.0/)
+**Author:** TechDadShanghai / MilesXLab
+**Nature:** 100% Non-Commercial Public Interest Project
+
+---
+
+## 1️⃣ Allowed Use (Permitted)
+
+- **Personal Use:** Protecting your child and family by checking batch codes against official recall data.
+- **Community Sharing:** Sharing this tool and its verified links with other parents for public safety.
+- **Adaptation:** Improving the tool's interface or features for non-commercial safety purposes.
+- **Attribution:** You must give appropriate credit to **"TechDadShanghai / SafeFeed Action"**.
+
+## 2️⃣ Prohibited Use (Non-Commercial Only)
+
+**Commercial use is strictly prohibited. This project is a volunteer-led non-profit community utility.** You may NOT:
+
+- **Sell or charge** for access to this tool, its database (`recall_database.csv`), or derived results.
+- **Incorporate** content into a paid subscription, paid course, membership program, or "Premium" safety alert service.
+- **Indirect Monetization:** Republish as your own work for direct or indirect monetization.
+
+Any commercial exploitation of this project's database or code constitutes a license violation.
+
+## 3️⃣ Official Access & Integrity
+
+Always access the most accurate and officially verified version via the primary channels:
+- **GitHub Repository:** [https://github.com/MilesXLab/safefeed-action](https://github.com/MilesXLab/safefeed-action)
+- **Live Search Tool:** [https://milesxlab.github.io/safefeed-action/](https://milesxlab.github.io/safefeed-action/)
+
+This tool consolidates data from over 20+ global regulatory bodies (FSA, FSAI, AGES, FDA, etc.). Cloned copies or third-party mirrors may contain outdated or unverified information.
+
+## 4️⃣ Security & Support
+
+- **Report Issues:** Found outdated info or new recall data? Report via [GitHub Issues](https://github.com/MilesXLab/safefeed-action/issues).
+- **Safety Alert:** If anyone charges you for this information, please REJECT and REPORT it immediately.
+- **Contact:** For non-profit partnerships or volunteer inquiries: miles.x.dev@outlook.com
+
+---
+
+**Copyright © 2026 TechDadShanghai. All rights reserved.**

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeFeed Action | Global Infant Formula Recall Search</title>
+    <meta name="description"
+        content="Official data-aligned emergency search tool for global infant formula recalls. Because 'I think it's safe' isn't enough at 2 AM.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=5.0.0">
+    <style>
+        .disclaimer-banner {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 2px solid #EF4444;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-overlay {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .sre-narrative {
+            border-left: 4px solid #3B82F6;
+            background: linear-gradient(to right, rgba(59, 130, 246, 0.05), transparent);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .tech-dad-gradient {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        }
+    </style>
+</head>
+
+<body class="text-slate-900 overflow-x-hidden">
+
+    <!-- Global Emergency Banner (Sticky) -->
+    <div class="disclaimer-banner sticky top-0 z-50 px-4 py-2.5 sm:py-3 text-center shadow-lg">
+        <p data-i18n="hazard_info"
+            class="text-[11px] sm:text-xs font-black text-red-600 uppercase tracking-tight leading-tight">
+            ⚠️ CEREULIDE TOXIN IS HEAT-RESISTANT. BOILING WATER HAS NO EFFECT. EMERGENCY ACTION REQUIRED.
+        </p>
+    </div>
+
+    <!-- Recall Announcement Scroll Banner -->
+    <div
+        class="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-700 text-white py-2 overflow-hidden relative shadow-md">
+        <div class="version-scroll-container">
+            <div class="version-scroll-content" id="recallScrollContent">
+                <!-- Content injected by script.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Page content wrapper -->
+    <div class="w-full max-w-3xl mx-auto px-4 pt-6 sm:pt-8 pb-4">
+        <!-- Header -->
+        <header class="flex flex-wrap justify-between items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+            <div class="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
+                    <svg viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-md">
+                        <!-- Nipple -->
+                        <path d="M80 15 Q68 15 68 35 L92 35 Q92 15 80 15Z" fill="#FFE4E6" stroke="#1E293B"
+                            stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+                        <!-- Cap -->
+                        <path
+                            d="M48 35 L112 35 Q120 35 120 45 L120 65 Q120 75 112 75 L48 75 Q40 75 40 65 L40 45 Q40 35 48 35Z"
+                            fill="#3B82F6" stroke="#1E293B" stroke-width="8" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <!-- Body -->
+                        <path
+                            d="M45 75 L115 75 Q130 75 130 110 L130 170 Q130 205 80 205 Q30 205 30 170 L30 110 Q30 75 45 75 Z"
+                            fill="white" stroke="#1E293B" stroke-width="8" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <!-- Milk Fill (Logo style) -->
+                        <path d="M35 140 L125 140 Q125 195 80 195 Q35 195 35 140 Z" fill="#EFF6FF" />
+                        <!-- Subtle Happy Eyes -->
+                        <circle cx="65" cy="115" r="6" fill="#1E293B" />
+                        <circle cx="95" cy="115" r="6" fill="#1E293B" />
+                    </svg>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <h2 data-i18n="project_name"
+                        class="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 leading-none">
+                        SafeFeed Action</h2>
+                    <h1 data-i18n="title" class="text-lg sm:text-xl font-black tracking-tight mt-0.5 sm:mt-1 truncate">
+                        Because 'I think it's safe' isn't enough at 2 AM.</h1>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 sm:gap-3 w-full sm:w-auto flex-shrink-0">
+                <button id="langToggle"
+                    class="px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 md:py-3 rounded-xl glass-card border border-slate-200 text-xs sm:text-sm font-bold hover:bg-white transition-all shadow-sm active:scale-95 flex-shrink-0 min-h-[44px]">
+                    EN / 中文
+                </button>
+            </div>
+        </header>
+
+        <main class="space-y-12 sm:space-y-14 pb-12">
+            <!-- Search Area -->
+            <div class="space-y-10">
+                <div class="relative group">
+                    <div
+                        class="absolute inset-y-0 left-0 pl-5 sm:pl-7 flex items-center pointer-events-none group-focus-within:text-blue-500 transition-colors">
+                        <span class="text-xl sm:text-2xl opacity-40">🔍</span>
+                    </div>
+                    <input type="text" id="searchInput"
+                        class="w-full bg-white/80 backdrop-blur-md border border-slate-200 py-5 sm:py-6 md:py-7 pl-12 sm:pl-14 md:pl-16 pr-12 sm:pr-14 md:pr-16 rounded-2xl sm:rounded-[2.5rem] text-lg sm:text-xl md:text-2xl font-black placeholder:text-slate-300 focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500/30 shadow-xl"
+                        placeholder="Scan or Enter Batch Code..." maxlength="25" autocomplete="off">
+                    <!-- Clear Button -->
+                    <button id="clearBtn"
+                        class="hidden absolute inset-y-0 right-0 pr-5 sm:pr-7 flex items-center text-slate-300 hover:text-slate-500 transition-colors">
+                        <span class="text-xl sm:text-2xl">✕</span>
+                    </button>
+                </div>
+
+                <div id="resultsContainer" class="min-h-[300px]"></div>
+
+                <!-- Batch Type Guide Hint -->
+                <div class="mt-4 text-center">
+                    <button id="batchGuideToggle"
+                        class="text-[11px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-500 transition-colors flex items-center justify-center gap-1.5 mx-auto">
+                        <span class="text-blue-500">💡</span> <span data-i18n="batch_guide_btn">How to identify
+                            codes?</span>
+                    </button>
+
+                    <div id="batchGuidePanel" class="hidden mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 slide-up">
+                        <div class="glass-card p-4 rounded-2xl border border-slate-100 text-left">
+                            <p data-i18n="batch_guide_date"
+                                class="text-[9px] font-black text-blue-600 uppercase tracking-widest mb-1">Date Format
+                            </p>
+                            <p data-i18n="batch_guide_date_desc" class="text-xs text-slate-600 font-bold leading-tight">
+                                Found on Danone/Aptamil (e.g., DD.MM.YYYY)</p>
+                        </div>
+                        <div class="glass-card p-4 rounded-2xl border border-slate-100 text-left">
+                            <p data-i18n="batch_guide_serial"
+                                class="text-[9px] font-black text-blue-600 uppercase tracking-widest mb-1">Serial Number
+                            </p>
+                            <p data-i18n="batch_guide_serial_desc"
+                                class="text-xs text-slate-600 font-bold leading-tight">10-digit manufacturing codes</p>
+                        </div>
+                        <div class="glass-card p-4 rounded-2xl border border-slate-100 text-left">
+                            <p data-i18n="batch_guide_series"
+                                class="text-[9px] font-black text-blue-600 uppercase tracking-widest mb-1">Series Prefix
+                            </p>
+                            <p data-i18n="batch_guide_series_desc"
+                                class="text-xs text-slate-600 font-bold leading-tight">First 4 digits of a production
+                                batch</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Human Echo Narrative: About Section -->
+                <section class="sre-narrative rounded-2xl p-6 sm:p-8 space-y-4">
+                    <h3 data-i18n="about_title" class="text-lg font-black text-slate-900 flex items-center gap-2">
+                        <span>👨‍💻</span> About SafeFeed Action
+                    </h3>
+                    <p data-i18n="about_body" class="text-sm text-slate-600 leading-relaxed italic">
+                        "I’m an SRE and a dad. I built this because I was searching batch numbers at midnight just like
+                        you. I moved from a 'Nestlé-only' name to 'SafeFeed Action' because keeping a brand-specific
+                        name was misleading while other brands were also being recalled. This is a non-commercial,
+                        public-interest response."
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-6 border-t border-slate-100">
+                        <a href="https://github.com/milesxlab/safefeed-action/issues" target="_blank"
+                            class="flex items-center justify-center gap-2.5 p-4 rounded-2xl bg-slate-900 text-white text-[10px] font-black uppercase tracking-[0.15em] hover:bg-slate-800 transition-all shadow-lg shadow-slate-200 active:scale-95">
+                            <span class="text-xs">📂</span>
+                            <span data-i18n="report_issue">Report Issue</span>
+                        </a>
+                        <a href="mailto:milesxlab@gmail.com"
+                            class="flex items-center justify-center gap-2.5 p-4 rounded-2xl bg-white border border-slate-200 text-slate-800 text-[10px] font-black uppercase tracking-[0.15em] hover:bg-slate-50 transition-all shadow-sm active:scale-95">
+                            <span class="text-xs">✉️</span>
+                            <span data-i18n="send_email">Send Email</span>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Authoritative Reference Section -->
+                <section class="space-y-6 pt-6 sm:pt-8" aria-labelledby="sources-heading">
+                    <div
+                        class="glass-card rounded-2xl sm:rounded-[2.5rem] p-6 sm:p-10 border border-slate-100 shadow-xl bg-white/50">
+                        <h4 id="sources-heading" data-i18n="sources_title"
+                            class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-800 leading-none mb-6">
+                            Verified Independent Data Sources
+                        </h4>
+                        <div id="sourcesList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+
+                        <div id="authoritativeFooter" class="mt-8 border-t border-slate-200/50 pt-6">
+                            <p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold">
+                                100% Brand-Agnostic Verification | Ground Truth Policy
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Stats & Feedback -->
+            <section class="stats-section bg-slate-50/50 rounded-3xl p-8 border border-slate-100 shadow-inner">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-8">
+                    <div class="flex gap-12">
+                        <div class="text-center sm:text-left">
+                            <span data-i18n="total_visits"
+                                class="block text-[10px] font-black uppercase text-slate-400 tracking-widest">Total
+                                Visits</span>
+                            <span id="pageViews" class="text-2xl font-black text-slate-900">...</span>
+                        </div>
+                        <div class="text-center sm:text-left">
+                            <span data-i18n="families_helped"
+                                class="block text-[10px] font-black uppercase text-slate-400 tracking-widest">Families
+                                Helped</span>
+                            <span id="helpfulCount" class="text-2xl font-black text-slate-900">...</span>
+                        </div>
+                    </div>
+                    <button id="helpfulBtn"
+                        class="bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-blue-500/20 active:scale-95 transition-all">
+                        <span data-i18n="helpful_button" class="btn-text">This Tool Helped Me</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="pt-12 pb-10 sm:pb-12 space-y-6 border-t border-slate-100">
+                <div class="text-center text-slate-300 text-[10px] space-y-2 font-medium uppercase tracking-widest">
+                    <p data-i18n="footer_copyright">© 2026 SafeFeed Action • Emergency Public Interest Project</p>
+                    <p data-i18n="footer_desc" class="text-[9px] text-slate-400">A temporary emergency response by
+                        MilesXLab (A Tech Dad). This
+                        project will be archived once the recall crisis stabilizes.</p>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Strict Terms Disclaimer Modal -->
+    <div id="disclaimerModal" class="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div class="modal-overlay absolute inset-0"></div>
+        <div
+            class="glass-card bg-white rounded-[2.5rem] p-8 sm:p-12 max-w-lg w-full relative z-10 shadow-2xl border border-white/20 slide-up">
+            <div class="space-y-8">
+                <div
+                    class="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center text-3xl shadow-inner border border-red-100">
+                    ⚖️
+                </div>
+                <div class="space-y-4">
+                    <h3 class="text-2xl font-black text-slate-900 tracking-tight">Strict Compliance Notice</h3>
+                    <div class="space-y-4 text-slate-600 text-sm leading-relaxed">
+                        <p>Loading legal notice...</p>
+                        <p></p>
+                        <p class="font-bold text-red-600"></p>
+                    </div>
+                </div>
+                <button id="acceptBtn"
+                    class="w-full bg-slate-900 text-white py-5 rounded-2xl font-black tracking-wide hover:bg-slate-800 transition-all shadow-xl active:scale-95">
+                    I AGREE TO THE STRICT TERMS
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/hotline.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
