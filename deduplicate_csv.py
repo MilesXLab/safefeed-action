@@ -10,17 +10,14 @@ def deduplicate():
         reader = csv.reader(f)
         header = next(reader)
         for row in reader:
-            if not row: continue
-            code = row[0]
-            if code in batches:
-                # Merge logic or Keep better one
-                existing = batches[code]
-                
-                # Check if one has more info in docUrl or sourceDisplay
-                # Or just keep the one that has a deeper link
-                # For this specific task, we'll merge regions if they are different
-                # and pick the more detailed description.
-                
+            if not row or len(row) < 10: continue
+            code = row[0].strip()
+            subBrand = row[1].strip()
+            product = row[2].strip()
+            key = (code, subBrand, product)
+            
+            if key in batches:
+                existing = batches[key]
                 # Merge region
                 if row[4] != existing[4]:
                     if row[4] not in existing[4]:
@@ -36,7 +33,7 @@ def deduplicate():
                 
                 removed_count += 1
             else:
-                batches[code] = row
+                batches[key] = row
 
     with open('recall_database.csv', 'w', encoding='utf-8', newline='') as f:
         writer = csv.writer(f)
