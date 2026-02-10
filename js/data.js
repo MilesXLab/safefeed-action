@@ -3,7 +3,7 @@
 
 const RECALL_METADATA = {
     "version": "4.7.0 (Global Verified)",
-    "lastUpdated": "2026-02-09 21:51 (PST)",
+    "lastUpdated": "2026-02-10 02:35 (PST)",
     "coverage": "14 Regions - Official Government Sources Only",
     "totalCount": 1805,
     "authority": "FSA, FSAI, AGES, SFA, FDA, ANVISA, COFEPRIS, MZD, AFSCA, RappelConso, FSANZ, SAMR, CFS",
@@ -1529,7 +1529,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Produktwarnung.at",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulide-danone-ruft-milumil-babynahrung-zueruck.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulid-danone-ruft-milumil-babynahrung-zurueck/36918",
         "isSeries": false
     },
     {
@@ -1541,7 +1541,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES Austria",
-        "docUrl": "https://www.ages.at/service/service-presse/pressemeldungen/presse-detail/rueckruf-von-milumil-babynahrung",
+        "docUrl": "https://www.ages.at/",
         "isSeries": false
     },
     {
@@ -1901,7 +1901,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Foodwatch.at",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/update-rueckruf-aptamil-babynahrung-danone-weitet-rueckruf-dramatisch-aus.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-gesundheitsgefahr-danone-ruft-aptamil-babynahrung-zurueck/36778",
         "isSeries": false
     },
     {
@@ -2033,7 +2033,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Foodwatch.at",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/update-rueckruf-aptamil-babynahrung-danone-weitet-rueckruf-dramatisch-aus.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-gesundheitsgefahr-danone-ruft-aptamil-babynahrung-zurueck/36778",
         "isSeries": false
     },
     {
@@ -2921,7 +2921,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Produktwarnung.at",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulide-danone-ruft-milumil-babynahrung-zueruck.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulid-danone-ruft-milumil-babynahrung-zurueck/36918",
         "isSeries": false
     },
     {
@@ -2933,7 +2933,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES Austria",
-        "docUrl": "https://www.ages.at/service/service-presse/pressemeldungen/presse-detail/rueckruf-von-milumil-babynahrung",
+        "docUrl": "https://www.ages.at/",
         "isSeries": false
     },
     {
@@ -3905,7 +3905,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Foodwatch.at",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/update-rueckruf-aptamil-babynahrung-danone-weitet-rueckruf-dramatisch-aus.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-gesundheitsgefahr-danone-ruft-aptamil-babynahrung-zurueck/36778",
         "isSeries": false
     },
     {
@@ -4157,7 +4157,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Produktwarnung.at",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulide-danone-ruft-milumil-babynahrung-zueruck.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulid-danone-ruft-milumil-babynahrung-zurueck/36918",
         "isSeries": false
     },
     {
@@ -4169,7 +4169,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES Austria",
-        "docUrl": "https://www.ages.at/service/service-presse/pressemeldungen/presse-detail/rueckruf-von-milumil-babynahrung",
+        "docUrl": "https://www.ages.at/",
         "isSeries": false
     },
     {
@@ -4289,7 +4289,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Danone AT",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/update-rueckruf-aptamil-babynahrung-danone-weitet-rueckruf-dramatisch-aus.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-gesundheitsgefahr-danone-ruft-aptamil-babynahrung-zurueck/36778",
         "isSeries": false
     },
     {
@@ -4373,7 +4373,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Produktwarnung.at",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulide-danone-ruft-milumil-babynahrung-zueruck.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulid-danone-ruft-milumil-babynahrung-zurueck/36918",
         "isSeries": false
     },
     {
@@ -4385,7 +4385,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES Austria",
-        "docUrl": "https://www.ages.at/service/service-presse/pressemeldungen/presse-detail/rueckruf-von-milumil-babynahrung",
+        "docUrl": "https://www.ages.at/",
         "isSeries": false
     },
     {
@@ -5333,7 +5333,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Produktwarnung.at",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulide-danone-ruft-milumil-babynahrung-zueruck.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulid-danone-ruft-milumil-babynahrung-zurueck/36918",
         "isSeries": false
     },
     {
@@ -5345,7 +5345,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES Austria",
-        "docUrl": "https://www.ages.at/service/service-presse/pressemeldungen/presse-detail/rueckruf-von-milumil-babynahrung",
+        "docUrl": "https://www.ages.at/",
         "isSeries": false
     },
     {
@@ -5969,7 +5969,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Foodwatch.at",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/update-rueckruf-aptamil-babynahrung-danone-weitet-rueckruf-dramatisch-aus.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-gesundheitsgefahr-danone-ruft-aptamil-babynahrung-zurueck/36778",
         "isSeries": false
     },
     {
@@ -8453,7 +8453,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Produktwarnung.at",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulide-danone-ruft-milumil-babynahrung-zueruck.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulid-danone-ruft-milumil-babynahrung-zurueck/36918",
         "isSeries": false
     },
     {
@@ -8465,7 +8465,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES Austria",
-        "docUrl": "https://www.ages.at/service/service-presse/pressemeldungen/presse-detail/rueckruf-von-milumil-babynahrung",
+        "docUrl": "https://www.ages.at/",
         "isSeries": false
     },
     {
@@ -8801,7 +8801,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Danone AT",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/update-rueckruf-aptamil-babynahrung-danone-weitet-rueckruf-dramatisch-aus.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-gesundheitsgefahr-danone-ruft-aptamil-babynahrung-zurueck/36778",
         "isSeries": false
     },
     {
@@ -9305,7 +9305,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Danone AT",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/update-rueckruf-aptamil-babynahrung-danone-weitet-rueckruf-dramatisch-aus.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-gesundheitsgefahr-danone-ruft-aptamil-babynahrung-zurueck/36778",
         "isSeries": false
     },
     {
@@ -9569,7 +9569,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Produktwarnung.at",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulide-danone-ruft-milumil-babynahrung-zueruck.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulid-danone-ruft-milumil-babynahrung-zurueck/36918",
         "isSeries": false
     },
     {
@@ -9581,7 +9581,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES Austria",
-        "docUrl": "https://www.ages.at/service/service-presse/pressemeldungen/presse-detail/rueckruf-von-milumil-babynahrung",
+        "docUrl": "https://www.ages.at/",
         "isSeries": false
     },
     {
@@ -10649,7 +10649,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Produktwarnung.at",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulide-danone-ruft-milumil-babynahrung-zueruck.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulid-danone-ruft-milumil-babynahrung-zurueck/36918",
         "isSeries": false
     },
     {
@@ -10661,7 +10661,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES Austria",
-        "docUrl": "https://www.ages.at/service/service-presse/pressemeldungen/presse-detail/rueckruf-von-milumil-babynahrung",
+        "docUrl": "https://www.ages.at/",
         "isSeries": false
     },
     {
@@ -11309,7 +11309,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Produktwarnung.at",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulide-danone-ruft-milumil-babynahrung-zueruck.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulid-danone-ruft-milumil-babynahrung-zurueck/36918",
         "isSeries": false
     },
     {
@@ -11321,7 +11321,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES Austria",
-        "docUrl": "https://www.ages.at/service/service-presse/pressemeldungen/presse-detail/rueckruf-von-milumil-babynahrung",
+        "docUrl": "https://www.ages.at/",
         "isSeries": false
     },
     {
@@ -12809,7 +12809,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Produktwarnung.at",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulide-danone-ruft-milumil-babynahrung-zueruck.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulid-danone-ruft-milumil-babynahrung-zurueck/36918",
         "isSeries": false
     },
     {
@@ -12821,7 +12821,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES Austria",
-        "docUrl": "https://www.ages.at/service/service-presse/pressemeldungen/presse-detail/rueckruf-von-milumil-babynahrung",
+        "docUrl": "https://www.ages.at/",
         "isSeries": false
     },
     {
@@ -13793,7 +13793,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Produktwarnung.at",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulide-danone-ruft-milumil-babynahrung-zueruck.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulid-danone-ruft-milumil-babynahrung-zurueck/36918",
         "isSeries": false
     },
     {
@@ -13805,7 +13805,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES Austria",
-        "docUrl": "https://www.ages.at/service/service-presse/pressemeldungen/presse-detail/rueckruf-von-milumil-babynahrung",
+        "docUrl": "https://www.ages.at/",
         "isSeries": false
     },
     {
@@ -14009,7 +14009,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid",
         "sourceDisplay": "AGES / Danone AT",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/update-rueckruf-aptamil-babynahrung-danone-weitet-rueckruf-dramatisch-aus.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-gesundheitsgefahr-danone-ruft-aptamil-babynahrung-zurueck/36778",
         "isSeries": false
     },
     {
@@ -14801,7 +14801,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Precautionary recall: Reported 'silent recall' due to potential Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "Foodwatch Austria",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/update-rueckruf-aptamil-babynahrung-danone-weitet-rueckruf-dramatisch-aus.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-gesundheitsgefahr-danone-ruft-aptamil-babynahrung-zurueck/36778",
         "isSeries": false
     },
     {
@@ -14813,7 +14813,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Precautionary recall: Reported 'silent recall' due to potential Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "Foodwatch Austria",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/update-rueckruf-aptamil-babynahrung-danone-weitet-rueckruf-dramatisch-aus.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-gesundheitsgefahr-danone-ruft-aptamil-babynahrung-zurueck/36778",
         "isSeries": false
     },
     {
@@ -14825,7 +14825,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Precautionary recall: Reported 'silent recall' due to potential Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "Foodwatch Austria",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/update-rueckruf-aptamil-babynahrung-danone-weitet-rueckruf-dramatisch-aus.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-gesundheitsgefahr-danone-ruft-aptamil-babynahrung-zurueck/36778",
         "isSeries": false
     },
     {
@@ -18857,7 +18857,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -18869,7 +18869,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19193,7 +19193,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19205,7 +19205,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19229,7 +19229,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19241,7 +19241,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19289,7 +19289,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19301,7 +19301,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19313,7 +19313,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19325,7 +19325,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19337,7 +19337,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19349,7 +19349,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19493,7 +19493,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19529,7 +19529,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19541,7 +19541,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19553,7 +19553,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19601,7 +19601,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19613,7 +19613,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19625,7 +19625,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19637,7 +19637,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19649,7 +19649,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19661,7 +19661,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19673,7 +19673,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19685,7 +19685,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -19697,7 +19697,7 @@ const RECALL_DATA = [
         "country": "Brazil",
         "reason": "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "ANVISA Brazil Resolución nº 32/2026",
-        "docUrl": "https://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?data=07/01/2026&jornal=515&pagina=461",
+        "docUrl": "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-proibe-comercializacao-de-lotes-de-formulas-infantis",
         "isSeries": false
     },
     {
@@ -20441,7 +20441,7 @@ const RECALL_DATA = [
         "country": "Austria",
         "reason": "Precautionary recall: Reported 'silent recall' due to potential Cereulide toxin (Bacillus cereus)",
         "sourceDisplay": "Foodwatch Austria",
-        "docUrl": "https://www.produktwarnung.eu/2026/02/05/update-rueckruf-aptamil-babynahrung-danone-weitet-rueckruf-dramatisch-aus.html",
+        "docUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-gesundheitsgefahr-danone-ruft-aptamil-babynahrung-zurueck/36778",
         "isSeries": false
     },
     {
