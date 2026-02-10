@@ -3,7 +3,7 @@
 
 const RECALL_METADATA = {
     "version": "4.7.0 (Global Verified)",
-    "lastUpdated": "2026-02-09 21:48 (PST)",
+    "lastUpdated": "2026-02-09 21:50 (PST)",
     "coverage": "14 Regions - Official Government Sources Only",
     "totalCount": 1805,
     "authority": "FSA, FSAI, AGES, SFA, FDA, ANVISA, COFEPRIS, MZD, AFSCA, RappelConso, FSANZ, SAMR, CFS",
@@ -4841,7 +4841,7 @@ const RECALL_DATA = [
         "country": "Singapore",
         "reason": "Precautionary recall: Presence of Cereulide toxin",
         "sourceDisplay": "Singapore Food Agency (SFA)",
-        "docUrl": "https://www.sfa.gov.sg/docs/default-source/default-album/sfa-media-release---recall-of-additional-batches-of-dumex-dulac-infant-formula.pdf",
+        "docUrl": "resources/official_docs/Singapore/SFA_Dumex_Recall_20260130.pdf",
         "isSeries": false
     },
     {
@@ -4865,7 +4865,7 @@ const RECALL_DATA = [
         "country": "Singapore",
         "reason": "Precautionary recall: Presence of Cereulide toxin",
         "sourceDisplay": "Singapore Food Agency (SFA)",
-        "docUrl": "https://www.sfa.gov.sg/docs/default-source/default-album/sfa-media-release---recall-of-additional-batches-of-dumex-dulac-infant-formula.pdf",
+        "docUrl": "resources/official_docs/Singapore/SFA_Dumex_Recall_20260130.pdf",
         "isSeries": false
     },
     {
