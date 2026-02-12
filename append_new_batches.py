@@ -21,7 +21,7 @@ data = [
     ["04.12.2026", "Aptamil", "Aptamil Pronutra Pre 800g", "800g", "Austria", "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid", "AGES / Foodwatch.at", "https://www.foodwatch.org/de/oesterreich/", "False", "Danone"]
 ]
 
-file_path = '/Users/miles/Projects/personal/nestle-recall-checker/recall_database.csv'
+file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'recall_database.csv')
 
 with open(file_path, 'a', newline='', encoding='utf-8') as f:
     writer = csv.writer(f)

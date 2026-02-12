@@ -7,13 +7,32 @@ function getHotlineButtons(itemData) {
     let hotlines = [];
 
     // Brand-Specific Overrides
-    if (brand.includes('aptamil') || brand.includes('danone') || brand.includes('dumex')) {
+    // Danone family: Aptamil, Cow & Gate, Milupa, Dumex, Milumil
+    if (brand.includes('aptamil') || brand.includes('danone') || brand.includes('dumex') ||
+        brand.includes('cow') || brand.includes('milupa') || brand.includes('milumil')) {
         if (country.includes('united kingdom') || country.includes('uk')) {
-            hotlines.push({ label: 'Aptamil UK', number: '0800 996 1000', tel: '08009961000' });
+            hotlines.push({ label: 'Danone UK', number: '0800 996 1000', tel: '08009961000' });
+        } else if (country.includes('ireland')) {
+            hotlines.push({ label: 'Danone IE', number: '1800 931 832', tel: '1800931832' });
         } else if (country.includes('singapore')) {
             hotlines.push({ label: 'Dumex SG', number: '1800 265 3188', tel: '18002653188' });
+        } else if (country.includes('germany') || country.includes('de') || country.includes('austria') || country.includes('at')) {
+            hotlines.push({ label: 'Danone DE', number: '0800 000 1894', tel: '08000001894' });
+        }
+    // Nestlé family: SMA, NAN, NanKid
+    } else if (brand.includes('nestl') || brand.includes('sma') || brand.includes('nan')) {
+        if (country.includes('united kingdom') || country.includes('uk')) {
+            hotlines.push({ label: 'Nestlé UK', number: '0800 081 8180', tel: '08000818180' });
         } else if (country.includes('ireland')) {
-            hotlines.push({ label: 'Support IE', number: '1800 931 832', tel: '1800931832' });
+            hotlines.push({ label: 'Nestlé IE', number: '1800 604 604', tel: '1800604604' });
+        } else if (country.includes('philippines')) {
+            hotlines.push({ label: 'Nestlé PH', number: '+63 2 8898 0061', tel: '+63288980061' });
+        } else if (country.includes('china') && country.includes('mainland')) {
+            hotlines.push({ label: 'Nestlé CN', number: '400-616-5015', tel: '4006165015' });
+        } else if (country.includes('hong kong') || country.includes('hk')) {
+            hotlines.push({ label: 'Nestlé HK', number: '+852 2179 8136', tel: '+85221798136' });
+        } else if (country.includes('australia') || country.includes('new zealand')) {
+            hotlines.push({ label: 'Nestlé AU', number: '1800 025 361', tel: '1800025361' });
         }
     } else if (brand.includes('picot') || brand.includes('lactalis')) {
         if (country.includes('france')) {

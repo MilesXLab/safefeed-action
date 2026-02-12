@@ -1,8 +1,9 @@
 import csv
 import os
 
-file_path = '/Users/miles/Projects/personal/nestle-recall-checker/recall_database.csv'
-temp_path = '/Users/miles/Projects/personal/nestle-recall-checker/fix_links_temp.csv'
+_script_dir = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(_script_dir, 'recall_database.csv')
+temp_path = os.path.join(_script_dir, 'fix_links_temp.csv')
 
 UPDATES = {
     'Milumil': 'https://www.produktwarnung.eu/2026/02/05/rueckruf-cereulide-danone-ruft-milumil-babynahrung-zueruck.html',
