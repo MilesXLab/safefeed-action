@@ -495,45 +495,61 @@ function updateLang() {
 // Announcement Renderer (Scrolling Banner) - Data-driven from ANNOUNCEMENTS
 function renderAnnouncement() {
     const container = document.getElementById('recallScrollContent');
-    if (!container) return; // Guard clause
+    if (!container) return;
 
-    // Use data-driven announcements if available, fall back to I18N
     const announcements = (typeof ANNOUNCEMENTS !== 'undefined') ? ANNOUNCEMENTS : [];
 
+    // Highlight helper for critical info
+    const highlight = (text) => {
+        if (!text) return '';
+        return text
+            .replace(/(\d+)/g, '<span class="text-yellow-300 font-black px-1">$1</span>')
+            .replace(/(URGENT|紧急|MASSIVE|剧烈扩大|召回)/gi, '<span class="text-white border-b-2 border-yellow-400/50">$1</span>')
+            .replace(/(Alula|Aptamil|Bimbosan|Danone|Lactalis|Nestlé|Sanulac|Vitagermine)/gi, '<span class="text-red-100 font-bold">$1</span>');
+    };
+
+    let contentHtml = "";
     if (announcements.length > 0) {
-        const itemsHtml = announcements.map(a => {
+        contentHtml = announcements.map(a => {
             const localized = a[currentLang] || a['en'];
             return `
-                <a href="${a.linkUrl}" target="_blank" class="inline-flex items-center mx-8 hover:text-red-100 transition-colors py-1 group">
-                    <span class="text-lg mr-2 animate-pulse" aria-hidden="true">📢</span>
-                    <span class="font-black uppercase tracking-tight mr-2 underline decoration-red-300 underline-offset-4">${localized.title}</span>
-                    <span class="opacity-90 mr-3 text-xs font-medium hidden sm:inline">${localized.body}</span>
-                    <span class="font-bold bg-white/20 px-2 py-0.5 rounded text-[10px] uppercase tracking-wider group-hover:bg-white group-hover:text-red-600 transition-all">🔗 ${localized.link}</span>
-                </a>
+                <div class="inline-flex items-center mx-12 py-1 flex-shrink-0">
+                    <span class="text-xl mr-3" aria-hidden="true">�</span>
+                    <span class="font-black uppercase tracking-wider mr-3">${highlight(localized.title)}</span>
+                    <span class="opacity-95 text-sm font-bold hidden sm:inline">${highlight(localized.body)}</span>
+                </div>
             `;
         }).join('');
-        container.innerHTML = itemsHtml + itemsHtml; // Duplicate for smooth scroll
     } else {
-        // Fallback to hardcoded I18N
         const t = I18N[currentLang];
-        const linkUrl = "https://www.produktwarnung.eu/2026/02/05/rueckruf-gesundheitsgefahr-danone-ruft-aptamil-babynahrung-zurueck/36778";
-        const itemHtml = `
-            <a href="${linkUrl}" target="_blank" class="inline-flex items-center mx-8 hover:text-red-100 transition-colors py-1 group">
-                <span class="text-lg mr-2 animate-pulse" aria-hidden="true">📢</span>
-                <span class="font-black uppercase tracking-tight mr-2 underline decoration-red-300 underline-offset-4">${t.announcement_title}</span>
-                <span class="opacity-90 mr-3 text-xs font-medium hidden sm:inline">${t.announcement_body}</span>
-                <span class="font-bold bg-white/20 px-2 py-0.5 rounded text-[10px] uppercase tracking-wider group-hover:bg-white group-hover:text-red-600 transition-all">🔗 ${t.announcement_link}</span>
-            </a>
+        contentHtml = `
+            <div class="inline-flex items-center mx-12 py-1 flex-shrink-0">
+                <span class="text-xl mr-3" aria-hidden="true">�</span>
+                <span class="font-black uppercase tracking-wider mr-3">${highlight(t.announcement_title)}</span>
+                <span class="opacity-95 text-sm font-bold hidden sm:inline">${highlight(t.announcement_body)}</span>
+            </div>
         `;
-        container.innerHTML = itemHtml + itemHtml;
     }
 
-    // Force scroll animation to run after dynamic content (some browsers don't re-trigger when innerHTML changes)
-    container.style.animation = 'none';
-    container.offsetHeight; // trigger reflow
-    container.style.animation = 'scroll-left 30s linear infinite';
+    // Repeat 4x for smooth looping
+    container.innerHTML = contentHtml.repeat(4);
 
-    // Clean up old bottom container if it still exists
+    // Reset animation logic
+    container.style.animation = 'none';
+    container.style.display = 'none';
+    void container.offsetHeight; // trigger reflow
+
+    container.style.display = 'inline-flex';
+    container.style.whiteSpace = 'nowrap';
+    container.style.willChange = 'transform';
+
+    // Higher reliability start
+    requestAnimationFrame(() => {
+        setTimeout(() => {
+            container.style.animation = 'scroll-left 120s linear infinite';
+        }, 10);
+    });
+
     const oldContainer = document.getElementById('announcementContainer');
     if (oldContainer) oldContainer.remove();
 }
