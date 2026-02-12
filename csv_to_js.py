@@ -15,6 +15,12 @@ Use for non-commercial purposes only. For commercial licensing, contact: miles.x
 import csv
 import json
 import re
+from datetime import datetime, timedelta, timezone
+try:
+    from zoneinfo import ZoneInfo
+    _pst_tz = ZoneInfo("America/Los_Angeles")
+except ImportError:
+    _pst_tz = None
 
 # --- Normalization functions (mirrored from JS for pre-computation) ---
 def normalize_batch(code):
@@ -106,13 +112,18 @@ for b in batches:
         primary = brand.split('(')[0].strip()
         _unique_brands.add(primary)
 
+# Dynamic date for announcements (use data generation time in PST)
+_now_pst = datetime.now(_pst_tz) if _pst_tz else (datetime.now(timezone.utc) - timedelta(hours=8))
+_date_en = _now_pst.strftime("%b %d, %Y").upper()   # e.g. FEB 11, 2026
+_date_zh = f"{_now_pst.year}年{_now_pst.month}月{_now_pst.day}日"
+
 STATS = {
     "batch_count": str(len(batches)),
     "region_count": str(len(_unique_countries)),
     "brand_list_en": ", ".join(sorted(_unique_brands)),
     "brand_list_zh": ", ".join(sorted(_unique_brands)),  # Brand names are international, same in both
-    "date_en": "FEB 8, 2026",       # Last major expansion date (update when new expansion happens)
-    "date_zh": "2026年2月8日",
+    "date_en": _date_en,
+    "date_zh": _date_zh,
 }
 
 # Write to JS
@@ -199,11 +210,11 @@ OFFICIAL_SOURCES = [
 
 # --- Announcement Data (edit here to update announcements without touching JS) ---
 # Supported placeholders (auto-replaced from actual data at generation time):
-#   {batch_count}   - total verified batches (e.g. "1805")
-#   {region_count}  - unique countries/regions (e.g. "20")
+#   {batch_count}   - total verified batches
+#   {region_count}  - unique countries/regions
 #   {brand_list_en} - comma-separated brand names
-#   {date_en}       - last major expansion date in English
-#   {date_zh}       - last major expansion date in Chinese
+#   {date_en}       - generation date in English (e.g. FEB 11, 2026)
+#   {date_zh}       - generation date in Chinese (e.g. 2026年2月11日)
 ANNOUNCEMENTS = [
     {
         "id": "recall_expansion_2026_02_08",
@@ -221,26 +232,13 @@ ANNOUNCEMENTS = [
     }
 ]
 
-from datetime import datetime, timedelta, timezone
-try:
-    from zoneinfo import ZoneInfo
-    pst_tz = ZoneInfo("America/Los_Angeles")
-except ImportError:
-    # Python < 3.9 fallback
-    pst_tz = None
-
 with open('js/data.js', 'w', encoding='utf-8') as f:
     f.write("// --- OFFICIAL VERIFIED RECALL DATABASE (v4.7.0 - Global Verified) ---\n")
     f.write("// 100% Official Sources Only - No Speculative Data\n\n")
     
-    if pst_tz:
-        pst_time = datetime.now(pst_tz)
-    else:
-        pst_time = datetime.now(timezone.utc) - timedelta(hours=8)
-    
     metadata = json.dumps({
         "version": "4.7.0 (Global Verified)",
-        "lastUpdated": pst_time.strftime("%Y-%m-%d %H:%M (PST)"),
+        "lastUpdated": _now_pst.strftime("%Y-%m-%d %H:%M (PST)"),
         "coverage": f"{STATS['region_count']} Regions - Official Government Sources Only",
         "totalCount": len(batches),
         "authority": "FSA, FSAI, AGES, SFA, FDA, ANVISA, COFEPRIS, MZD, AFSCA, RappelConso, FSANZ, SAMR, CFS",

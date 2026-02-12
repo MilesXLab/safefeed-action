@@ -3,7 +3,7 @@
 
 const RECALL_METADATA = {
   "version": "4.7.0 (Global Verified)",
-  "lastUpdated": "2026-02-11 17:04 (PST)",
+  "lastUpdated": "2026-02-11 17:06 (PST)",
   "coverage": "25 Regions - Official Government Sources Only",
   "totalCount": 1805,
   "authority": "FSA, FSAI, AGES, SFA, FDA, ANVISA, COFEPRIS, MZD, AFSCA, RappelConso, FSANZ, SAMR, CFS",
@@ -102,12 +102,12 @@ const ANNOUNCEMENTS = [
     "id": "recall_expansion_2026_02_08",
     "linkUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-gesundheitsgefahr-danone-ruft-aptamil-babynahrung-zurueck/36778",
     "en": {
-      "title": "URGENT: MASSIVE RECALL EXPANSION (FEB 8, 2026)",
+      "title": "URGENT: MASSIVE RECALL EXPANSION (FEB 11, 2026)",
       "body": "The recall has expanded globally across multiple brands including Alula, Aptamil, Bimbosan, Danone, La Marque en Moins, Lactalis, Milumil, Nestlé, Sanulac, Vitagermine and more. Our database now contains 1805 verified batches from 25 regions to ensure comprehensive infant safety.",
       "link": "Read Official Notice"
     },
     "zh": {
-      "title": "紧急状态：召回范围剧烈扩大 (2026年2月8日)",
+      "title": "紧急状态：召回范围剧烈扩大 (2026年2月11日)",
       "body": "召回范围已在全球多个品牌中剧烈扩大，包括 Alula, Aptamil, Bimbosan, Danone, La Marque en Moins, Lactalis, Milumil, Nestlé, Sanulac, Vitagermine 等。本工具已同步全球 25 个国家和地区的官方数据，当前包含 1805 个已核实批次，确保全品牌安全覆盖。",
       "link": "查看官方公告"
     }
