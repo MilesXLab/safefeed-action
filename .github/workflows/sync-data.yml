@@ -13,6 +13,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: sync-data
+  cancel-in-progress: false
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -23,12 +27,15 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.10.x'
 
       - name: Run Archive and Sync Script
         run: python archive_and_sync.py
+
+      - name: Validate Data Integrity
+        run: python final_deployment_check.py
 
       - name: Commit and Push Changes
         run: |

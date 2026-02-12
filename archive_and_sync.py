@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Global Nestlé Infant Formula Recall Verification Tool
+SafeFeed Action - Global Infant Formula Recall Verification Tool
 Daily Archive & Sync Utility
 
 Author: TechDadShanghai
@@ -26,10 +26,10 @@ SYNC_SCRIPT = "csv_to_js.py"
 def safe_print(msg):
     try:
         print(msg)
-    except:
+    except UnicodeEncodeError:
         try:
             print(msg.encode('utf-8', errors='replace').decode('gbk', errors='replace'))
-        except:
+        except Exception:
             print(msg.encode('ascii', errors='replace').decode('ascii'))
 
 def archive_and_sync():
@@ -40,7 +40,12 @@ def archive_and_sync():
         safe_print(f"Error: {DB_FILE} not found!")
         sys.exit(1)
 
-    # 2. Create archive snapshot
+    # 2. Ensure archive directory exists
+    if not os.path.exists(ARCHIVE_DIR):
+        os.makedirs(ARCHIVE_DIR)
+        safe_print(f"📁 Created archive directory: {ARCHIVE_DIR}")
+
+    # 3. Create archive snapshot
     timestamp = datetime.now().strftime("%Y_%m_%d")
     archive_name = f"data_{timestamp}.csv"
     archive_path = os.path.join(ARCHIVE_DIR, archive_name)

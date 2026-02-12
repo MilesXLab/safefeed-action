@@ -1,43 +1,63 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+SafeFeed Action - Global Infant Formula Recall Verification Tool
+CSV Deduplication Utility
+
+Author: TechDadShanghai
+License: Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
+Copyright (c) 2026 TechDadShanghai
+"""
 
 import csv
+import os
+import sys
 from collections import OrderedDict
 
+DB_FILE = 'recall_database.csv'
+
 def deduplicate():
+    if not os.path.exists(DB_FILE):
+        print(f"Error: {DB_FILE} not found!")
+        sys.exit(1)
+
     batches = OrderedDict()
     removed_count = 0
+    fieldnames = None
     
-    with open('recall_database.csv', 'r', encoding='utf-8') as f:
-        reader = csv.reader(f)
-        header = next(reader)
+    with open(DB_FILE, 'r', encoding='utf-8-sig') as f:
+        reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames
         for row in reader:
-            if not row or len(row) < 10: continue
-            code = row[0].strip()
-            subBrand = row[1].strip()
-            product = row[2].strip()
-            key = (code, subBrand, product)
+            if not row.get('code'):
+                continue
+            code = row['code'].strip()
+            sub_brand = row['subBrand'].strip()
+            product = row['product'].strip()
+            key = (code, sub_brand, product)
             
             if key in batches:
                 existing = batches[key]
                 # Merge region
-                if row[4] != existing[4]:
-                    if row[4] not in existing[4]:
-                        existing[4] = f"{existing[4]}/{row[4]}"
+                if row['country'] != existing['country']:
+                    if row['country'] not in existing['country']:
+                        existing['country'] = f"{existing['country']}/{row['country']}"
                 
                 # Update link if new is deeper
-                if len(row[7]) > len(existing[7]) and 'http' in row[7]:
-                    existing[7] = row[7]
+                if len(row['docUrl']) > len(existing['docUrl']) and 'http' in row['docUrl']:
+                    existing['docUrl'] = row['docUrl']
                 
                 # Update source if new is more specific
-                if len(row[6]) > len(existing[6]):
-                    existing[6] = row[6]
+                if len(row['sourceDisplay']) > len(existing['sourceDisplay']):
+                    existing['sourceDisplay'] = row['sourceDisplay']
                 
                 removed_count += 1
             else:
                 batches[key] = row
 
-    with open('recall_database.csv', 'w', encoding='utf-8', newline='') as f:
-        writer = csv.writer(f)
-        writer.writerow(header)
+    with open(DB_FILE, 'w', encoding='utf-8', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
         for row in batches.values():
             writer.writerow(row)
     

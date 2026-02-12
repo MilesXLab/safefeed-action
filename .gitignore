@@ -68,6 +68,10 @@ yarn-error.log
 *.log
 logs/
 
+# Generated reports & temp files from scripts
+PRE_DEPLOYMENT_REPORT.md
+fix_links_temp.csv
+
 # Temporary files
 *.tmp
 *.bak

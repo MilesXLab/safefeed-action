@@ -7,11 +7,15 @@
     <title>SafeFeed Action | Global Infant Formula Recall Search</title>
     <meta name="description"
         content="Official data-aligned emergency search tool for global infant formula recalls. Because 'I think it's safe' isn't enough at 2 AM.">
+    <!-- Preconnect for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <script src="https://cdn.tailwindcss.com"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=5.0.0">
+    <link rel="stylesheet" href="css/style.css?v=5.1.0">
     <style>
         .disclaimer-banner {
             background: rgba(255, 255, 255, 0.95);
@@ -27,12 +31,6 @@
         .sre-narrative {
             border-left: 4px solid #3B82F6;
             background: linear-gradient(to right, rgba(59, 130, 246, 0.05), transparent);
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
         }
 
         .tech-dad-gradient {
@@ -108,22 +106,24 @@
         <main class="space-y-12 sm:space-y-14 pb-12">
             <!-- Search Area -->
             <div class="space-y-10">
-                <div class="relative group">
+                <div class="relative group" role="search">
+                    <label for="searchInput" class="sr-only">Batch Code Search</label>
                     <div
                         class="absolute inset-y-0 left-0 pl-5 sm:pl-7 flex items-center pointer-events-none group-focus-within:text-blue-500 transition-colors">
-                        <span class="text-xl sm:text-2xl opacity-40">🔍</span>
+                        <span class="text-xl sm:text-2xl opacity-40" aria-hidden="true">🔍</span>
                     </div>
                     <input type="text" id="searchInput"
                         class="w-full bg-white/80 backdrop-blur-md border border-slate-200 py-5 sm:py-6 md:py-7 pl-12 sm:pl-14 md:pl-16 pr-12 sm:pr-14 md:pr-16 rounded-2xl sm:rounded-[2.5rem] text-lg sm:text-xl md:text-2xl font-black placeholder:text-slate-300 focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500/30 shadow-xl"
-                        placeholder="Scan or Enter Batch Code..." maxlength="25" autocomplete="off">
+                        placeholder="Scan or Enter Batch Code..." maxlength="25" autocomplete="off"
+                        aria-describedby="resultsContainer">
                     <!-- Clear Button -->
-                    <button id="clearBtn"
+                    <button id="clearBtn" aria-label="Clear search input"
                         class="hidden absolute inset-y-0 right-0 pr-5 sm:pr-7 flex items-center text-slate-300 hover:text-slate-500 transition-colors">
-                        <span class="text-xl sm:text-2xl">✕</span>
+                        <span class="text-xl sm:text-2xl" aria-hidden="true">✕</span>
                     </button>
                 </div>
 
-                <div id="resultsContainer" class="min-h-[300px]"></div>
+                <div id="resultsContainer" class="min-h-[300px]" aria-live="polite" role="status"></div>
 
                 <!-- Batch Type Guide Hint -->
                 <div class="mt-4 text-center">
@@ -240,7 +240,8 @@
     </div>
 
     <!-- Strict Terms Disclaimer Modal -->
-    <div id="disclaimerModal" class="fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <div id="disclaimerModal" class="fixed inset-0 z-[100] flex items-center justify-center p-4"
+        role="dialog" aria-modal="true" aria-labelledby="disclaimerTitle">
         <div class="modal-overlay absolute inset-0"></div>
         <div
             class="glass-card bg-white rounded-[2.5rem] p-8 sm:p-12 max-w-lg w-full relative z-10 shadow-2xl border border-white/20 slide-up">
@@ -250,7 +251,7 @@
                     ⚖️
                 </div>
                 <div class="space-y-4">
-                    <h3 class="text-2xl font-black text-slate-900 tracking-tight">Strict Compliance Notice</h3>
+                    <h3 id="disclaimerTitle" class="text-2xl font-black text-slate-900 tracking-tight">Strict Compliance Notice</h3>
                     <div class="space-y-4 text-slate-600 text-sm leading-relaxed">
                         <p>Loading legal notice...</p>
                         <p></p>

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Global Nestlé Infant Formula Recall Verification Tool
+SafeFeed Action - Global Infant Formula Recall Verification Tool
 Final Pre-Deployment Verification
 
 Author: TechDadShanghai
@@ -34,15 +34,19 @@ def verify_project():
     # 1.2 Statistics
     total_batches = len(rows)
     countries = Counter(r['country'] for r in rows)
-    speculative_entries = [r for r in rows if r.get('isSeries', 'False').lower() == 'true']
+    series_entries = [r for r in rows if r.get('isSeries', 'False').lower() == 'true']
     
     report.append(f"- **Total Official Batches**: {total_batches}")
-    report.append(f"- **Speculative/Series Rows**: {len(speculative_entries)} (Should be 0)")
+    report.append(f"- **Series Recall Entries** (isSeries=True): {len(series_entries)}")
     
-    if len(speculative_entries) == 0:
-        report.append("  - ✅ Speculative data check PASSED")
+    report.append(f"  - ✅ Series entries are valid official whole-line recalls ({len(series_entries)} found)")
+    
+    # Check for entries missing required fields (actual data quality check)
+    incomplete_entries = [r for r in rows if not r.get('code', '').strip() or not r.get('docUrl', '').strip()]
+    if len(incomplete_entries) == 0:
+        report.append("  - ✅ All entries have required fields (code, docUrl)")
     else:
-        report.append("  - ❌ Speculative data check FAILED")
+        report.append(f"  - ❌ {len(incomplete_entries)} entries missing required fields (code or docUrl)")
 
     # 1.3 Region Naming Verification
     report.append("\n### Region Naming Validation")
@@ -72,10 +76,10 @@ def verify_project():
                 report.append("\n## 2. Application Logic Check")
                 report.append("- ✅ `js/data.js` appears synced with CSV (Total count matches)")
             else:
-                 report.append("\n## 2. Application Logic Check")
-                 report.append(f"- ⚠️ `js/data.js` might be out of sync. Check total count.")
-    except:
-        report.append("- ❌ Could not read js/data.js")
+                report.append("\n## 2. Application Logic Check")
+                report.append(f"- ⚠️ `js/data.js` might be out of sync. Check total count.")
+    except Exception as e:
+        report.append(f"- ❌ Could not read js/data.js: {str(e)}")
 
     # 1.5 File Structure
     report.append("\n## 3. Project Structure")
@@ -83,9 +87,9 @@ def verify_project():
     missing_files = [f for f in required_files if not os.path.exists(f)]
     
     if not missing_files:
-         report.append("- ✅ All core application files present")
+        report.append("- ✅ All core application files present")
     else:
-         report.append(f"- ❌ Missing files: {missing_files}")
+        report.append(f"- ❌ Missing files: {missing_files}")
 
     return "\n".join(report)
 

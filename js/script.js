@@ -49,9 +49,9 @@ const I18N = {
         help_description_compact: "Found outdated info or new recall data? Help us improve!",
         report_on_github_short: "Report Issue",
         send_email: "Send Email",
-        announcement_title: "🚨 URGENT: MASSIVE RECALL EXPANSION (FEB 8, 2026)",
-        announcement_body: "The recall has expanded globally across multiple brands including SMA, NAN, Aptamil, Cow & Gate, Milupa, Dumex, and more. Our database has been updated with 731 verified batches from over 14 regions to ensure comprehensive infant safety.",
-        announcement_link: "Read Official FSA Notice",
+        announcement_title: "🚨 URGENT: MASSIVE RECALL EXPANSION",
+        announcement_body: "Global multi-brand recall is ongoing. Check your batch codes now.",
+        announcement_link: "Read Official Notice",
         total_visits: "Total Visits",
         families_helped: "Families Helped",
         helpful_button: "This Tool Helped Me",
@@ -120,9 +120,9 @@ const I18N = {
         help_description_compact: "发现过时信息或新的召回数据？帮助我们改进！",
         report_on_github_short: "报告问题",
         send_email: "发送邮件",
-        announcement_title: "🚨 紧急状态：召回范围剧烈扩大 (2026年2月8日)",
-        announcement_body: "召回范围已在全球多个品牌中剧烈扩大，包括国际品牌 (SMA, NAN)、达能 (爱他美, 牛栏, Milupa, 多美滋) 等。本工具已同步全球 14 个国家和地区的官方数据，当前包含 731 个已核实批次，确保全品牌安全覆盖。",
-        announcement_link: "查看英国 FSA 官方公告",
+        announcement_title: "🚨 紧急状态：召回范围扩大",
+        announcement_body: "全球多品牌召回持续进行中。请立即查询您的批次号。",
+        announcement_link: "查看官方公告",
         total_visits: "总访问量",
         families_helped: "帮助的家庭",
         helpful_button: "这个工具帮到我了",
@@ -145,7 +145,7 @@ const I18N = {
 };
 
 const REASON_MAP = {
-    // Chinese Bases
+    // --- Chinese originals ---
     "预防性召回：个别原材料存在蜡样芽孢杆菌代谢物（Cereulide）风险": {
         en: "Precautionary recall: Risk of Cereulide (Bacillus cereus toxin) in certain raw materials",
         zh: "预防性召回：个别原材料存在蜡样芽孢杆菌代谢物（Cereulide）风险"
@@ -154,7 +154,7 @@ const REASON_MAP = {
         en: "Precautionary recall: Cereulide toxin risk",
         zh: "预防性召回：蜡样芽孢杆菌代谢物风险 (Cereulide)"
     },
-    // English Bases
+    // --- English originals ---
     "Precautionary recall: Possible presence of Cereulide toxin (Bacillus cereus)": {
         en: "Precautionary recall: Possible presence of Cereulide toxin (Bacillus cereus)",
         zh: "预防性召回：可能存在蜡样芽孢杆菌毒素 (Cereulide)"
@@ -191,13 +191,76 @@ const REASON_MAP = {
         en: "Precautionary recall: Cereulide toxin risk",
         zh: "预防性召回：Cereulide 毒素风险"
     },
+    "Precautionary recall: Potential Cereulide toxin": {
+        en: "Precautionary recall: Potential Cereulide toxin",
+        zh: "预防性召回：可能存在 Cereulide 毒素"
+    },
+    "Precautionary recall: Potential presence of Cereulide (Bacillus cereus toxin)": {
+        en: "Precautionary recall: Potential presence of Cereulide (Bacillus cereus toxin)",
+        zh: "预防性召回：可能存在蜡样芽孢杆菌毒素 (Cereulide)"
+    },
+    "Precautionary recall: Potential presence of Cereulide (Bacillus cereus toxin) in raw material": {
+        en: "Precautionary recall: Potential presence of Cereulide (Bacillus cereus toxin) in raw material",
+        zh: "预防性召回：原材料中可能存在蜡样芽孢杆菌毒素 (Cereulide)"
+    },
+    "Precautionary recall: Potential Cereulide toxin contamination (Bacillus cereus)": {
+        en: "Precautionary recall: Potential Cereulide toxin contamination (Bacillus cereus)",
+        zh: "预防性召回：可能存在蜡样芽孢杆菌 (Cereulide) 毒素污染"
+    },
+    "Precautionary recall: Potential toxic substances": {
+        en: "Precautionary recall: Potential toxic substances",
+        zh: "预防性召回：可能存在有毒物质"
+    },
+    "Precautionary recall: Cereulide toxin detected": {
+        en: "Precautionary recall: Cereulide toxin detected",
+        zh: "预防性召回：检测到 Cereulide 毒素"
+    },
+    "Precautionary recall: Presence of Cereulide toxin": {
+        en: "Precautionary recall: Presence of Cereulide toxin",
+        zh: "预防性召回：存在 Cereulide 毒素"
+    },
+    "Precautionary recall: Reported 'silent recall' due to potential Cereulide toxin (Bacillus cereus)": {
+        en: "Precautionary recall: Reported 'silent recall' due to potential Cereulide toxin (Bacillus cereus)",
+        zh: "预防性召回：因可能存在蜡样芽孢杆菌毒素 (Cereulide) 进行静默召回"
+    },
+    "Precautionary recall: Proactive recall by importer due to potential Cereulide contamination (Lactalis related)": {
+        en: "Precautionary recall: Proactive recall by importer due to potential Cereulide contamination (Lactalis related)",
+        zh: "预防性召回：进口商因可能存在 Cereulide 污染主动召回（与 Lactalis 相关）"
+    },
+    "Precautionary recall: Possible presence of Cereulide Produced by Bacillus Cereus": {
+        en: "Precautionary recall: Possible presence of Cereulide Produced by Bacillus Cereus",
+        zh: "预防性召回：可能存在蜡样芽孢杆菌产生的 Cereulide 毒素"
+    },
+    "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)": {
+        en: "Preventative recall: Risk of contamination by Cereulide toxin (Bacillus cereus)",
+        zh: "预防性召回：存在蜡样芽孢杆菌 (Cereulide) 毒素污染风险"
+    },
+    "Potential presence of Cereulide toxin": {
+        en: "Potential presence of Cereulide toxin",
+        zh: "可能存在 Cereulide 毒素"
+    },
+    // --- German originals ---
     "Vorsorglicher Rückruf: Mögliches Vorhandensein des Toxins Cereulid": {
         en: "Precautionary recall: Possible presence of Cereulide toxin",
         zh: "预防性召回：可能存在 Cereulide 毒素"
     },
+    // --- French originals ---
     "Rappel de précaution : Présence potentielle de toxin (Céréulide)": {
         en: "Precautionary recall: Potential presence of Cereulide toxin",
         zh: "预防性召回：可能存在 Cereulide 毒素"
+    },
+    "Principe de précaution : présence potentielle de céréulide": {
+        en: "Precautionary recall: Potential presence of Cereulide",
+        zh: "预防性召回：可能存在 Cereulide 毒素"
+    },
+    "Principe de précaution : présence potentielle de céréulide (Bacillus cereus toxin)": {
+        en: "Precautionary recall: Potential presence of Cereulide (Bacillus cereus toxin)",
+        zh: "预防性召回：可能存在蜡样芽孢杆菌毒素 (Cereulide)"
+    },
+    // --- Spanish originals ---
+    "Alerta Sanitaria: Posible presencia de toxina cereulida (Bacillus cereus)": {
+        en: "Sanitary Alert: Possible presence of Cereulide toxin (Bacillus cereus)",
+        zh: "卫生警报：可能存在蜡样芽孢杆菌毒素 (Cereulide)"
     }
 };
 
@@ -231,6 +294,46 @@ function normalizeBatch(code) {
     return { sanitized, fuzzy };
 }
 
+// --- SEARCH INDEX (built once at load time for O(1) lookups) ---
+// Resolve lookup table references and build fast search maps
+const _exactIndex = new Map();   // sanitized/fuzzy/raw -> item (non-series only)
+const _seriesEntries = [];       // series items with pre-computed sanitized codes
+
+(function buildSearchIndex() {
+    for (const item of RECALL_DATA) {
+        // Resolve reason and source from lookup tables
+        if (item.ri !== undefined) {
+            item.reason = REASON_TABLE[item.ri];
+            delete item.ri;
+        }
+        if (item.si !== undefined) {
+            item.sourceDisplay = SOURCE_TABLE[item.si];
+            delete item.si;
+        }
+        // Use pre-computed normalized values (s = sanitized, f = fuzzy)
+        const dbSanitized = item.s || normalizeBatch(item.code).sanitized;
+        const dbFuzzy = item.f || normalizeBatch(item.code).fuzzy;
+
+        if (item.isSeries) {
+            _seriesEntries.push({ sanitized: dbSanitized, raw: item.code, item });
+        } else {
+            // Index by all possible match keys
+            if (dbSanitized && !_exactIndex.has(dbSanitized)) _exactIndex.set(dbSanitized, item);
+            if (dbFuzzy && !_exactIndex.has(dbFuzzy)) _exactIndex.set(dbFuzzy, item);
+            if (item.code && !_exactIndex.has(item.code)) _exactIndex.set(item.code, item);
+        }
+    }
+})();
+
+// Debounce utility
+function debounce(fn, delay) {
+    let timer;
+    return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(this, args), delay);
+    };
+}
+
 const REGION_FLAGS = {
     "IE_FSAI": "🇮🇪",
     "AT_AGES": "🇦🇹",
@@ -252,20 +355,52 @@ const REGION_FLAGS = {
 
 const COUNTRY_FLAGS = {
     "UK": "🇬🇧",
+    "United Kingdom": "🇬🇧",
+    "United Kingdom/Ireland": "🇬🇧",
+    "United Kingdom/UK/Ireland": "🇬🇧",
+    "United Kingdom (NI)/Ireland": "🇬🇧",
+    "UK/Ireland": "🇬🇧",
     "Ireland": "🇮🇪",
     "Austria": "🇦🇹",
+    "AT": "🇦🇹",
     "Germany": "🇩🇪",
+    "DE": "🇩🇪",
+    "DE/AT": "🇩🇪",
+    "Germany/Austria": "🇩🇪",
     "Singapore": "🇸🇬",
-
+    "Singapore, Brunei": "🇸🇬",
     "Czech Republic": "🇨🇿",
     "Brazil": "🇧🇷",
     "Mexico": "🇲🇽",
     "Philippines": "🇵🇭",
     "France": "🇫🇷",
+    "France/Global": "🇫🇷",
+    "France/Global (France/Belgium/etc)": "🇫🇷",
+    "France/Luxembourg": "🇫🇷",
+    "France/France/Luxembourg": "🇫🇷",
+    "France/Vietnam": "🇫🇷",
+    "France/Belgium/Luxembourg/Vietnam": "🇫🇷",
+    "France/Switzerland": "🇫🇷",
     "China (Mainland)": "🇨🇳",
     "China (Cross-border)": "🇨🇳",
+    "China (Cross-border)/Hong Kong": "🇨🇳",
+    "China (Cross-border)/Czech Republic": "🇨🇳",
+    "China (Taiwan)": "🇨🇳",
     "Hong Kong": "🇨🇳",
-    "Australia/NZ": "🇦🇺"
+    "Australia/NZ": "🇦🇺",
+    "Australia/New Zealand": "🇦🇺",
+    "Australia/New Zealand/Vietnam": "🇦🇺",
+    "Switzerland": "🇨🇭",
+    "Switzerland/Global": "🇨🇭",
+    "Switzerland/Belgium/Netherlands": "🇨🇭",
+    "Belgium/Netherlands": "🇧🇪",
+    "Netherlands": "🇳🇱",
+    "Luxembourg": "🇱🇺",
+    "Middle East (MENA)": "🌍",
+    "Egypt": "🇪🇬",
+    "Israel": "🇮🇱",
+    "Croatia": "🇭🇷",
+    "South Africa": "🇿🇦"
 };
 
 function updateLang() {
@@ -346,9 +481,6 @@ function updateLang() {
     const sourcesList = document.getElementById('sourcesList');
     if (sourcesList) sourcesList.innerHTML = sourcesHtml;
 
-    // Update version scrolling banner
-    updateVersionBanner();
-
     // Update announcements
     renderAnnouncement();
 
@@ -360,42 +492,46 @@ function updateLang() {
     }
 }
 
-// Version Update Banner Function (Now in footer - static display)
-function updateVersionBanner() {
-    const versionText = I18N[currentLang].version_update
-        .replace('{version}', RECALL_METADATA.version)
-        .replace('{date}', RECALL_METADATA.lastUpdated)
-        .replace('{count}', RECALL_METADATA.totalCount)
-        .replace('{coverage}', RECALL_METADATA.coverage);
-
-    const scrollContent = document.getElementById('versionScrollContent');
-    if (!scrollContent) return;
-
-    // Static display in footer (no scrolling needed)
-    scrollContent.textContent = versionText;
-}
-
-// Announcement Renderer
-// Announcement Renderer (Scrolling Banner)
+// Announcement Renderer (Scrolling Banner) - Data-driven from ANNOUNCEMENTS
 function renderAnnouncement() {
     const container = document.getElementById('recallScrollContent');
     if (!container) return; // Guard clause
 
-    const t = I18N[currentLang];
+    // Use data-driven announcements if available, fall back to I18N
+    const announcements = (typeof ANNOUNCEMENTS !== 'undefined') ? ANNOUNCEMENTS : [];
 
-    const linkUrl = "https://www.produktwarnung.eu/2026/02/05/rueckruf-gesundheitsgefahr-danone-ruft-aptamil-babynahrung-zurueck/36778";
+    if (announcements.length > 0) {
+        const itemsHtml = announcements.map(a => {
+            const localized = a[currentLang] || a['en'];
+            return `
+                <a href="${a.linkUrl}" target="_blank" class="inline-flex items-center mx-8 hover:text-red-100 transition-colors py-1 group">
+                    <span class="text-lg mr-2 animate-pulse" aria-hidden="true">📢</span>
+                    <span class="font-black uppercase tracking-tight mr-2 underline decoration-red-300 underline-offset-4">${localized.title}</span>
+                    <span class="opacity-90 mr-3 text-xs font-medium hidden sm:inline">${localized.body}</span>
+                    <span class="font-bold bg-white/20 px-2 py-0.5 rounded text-[10px] uppercase tracking-wider group-hover:bg-white group-hover:text-red-600 transition-all">🔗 ${localized.link}</span>
+                </a>
+            `;
+        }).join('');
+        container.innerHTML = itemsHtml + itemsHtml; // Duplicate for smooth scroll
+    } else {
+        // Fallback to hardcoded I18N
+        const t = I18N[currentLang];
+        const linkUrl = "https://www.produktwarnung.eu/2026/02/05/rueckruf-gesundheitsgefahr-danone-ruft-aptamil-babynahrung-zurueck/36778";
+        const itemHtml = `
+            <a href="${linkUrl}" target="_blank" class="inline-flex items-center mx-8 hover:text-red-100 transition-colors py-1 group">
+                <span class="text-lg mr-2 animate-pulse" aria-hidden="true">📢</span>
+                <span class="font-black uppercase tracking-tight mr-2 underline decoration-red-300 underline-offset-4">${t.announcement_title}</span>
+                <span class="opacity-90 mr-3 text-xs font-medium hidden sm:inline">${t.announcement_body}</span>
+                <span class="font-bold bg-white/20 px-2 py-0.5 rounded text-[10px] uppercase tracking-wider group-hover:bg-white group-hover:text-red-600 transition-all">🔗 ${t.announcement_link}</span>
+            </a>
+        `;
+        container.innerHTML = itemHtml + itemHtml;
+    }
 
-    // Scrolling Content: Icon + Title + Body + Link (Hazard warning removed - already in sticky banner)
-    const itemHtml = `
-        <a href="${linkUrl}" target="_blank" class="inline-flex items-center mx-8 hover:text-red-100 transition-colors py-1 group">
-            <span class="text-lg mr-2 animate-pulse">📢</span>
-            <span class="font-black uppercase tracking-tight mr-2 underline decoration-red-300 underline-offset-4">${t.announcement_title}</span>
-            <span class="opacity-90 mr-3 text-xs font-medium hidden sm:inline">${t.announcement_body}</span>
-            <span class="font-bold bg-white/20 px-2 py-0.5 rounded text-[10px] uppercase tracking-wider group-hover:bg-white group-hover:text-red-600 transition-all">🔗 ${t.announcement_link}</span>
-        </a>
-    `;
-
-    container.innerHTML = itemHtml + itemHtml; // Duplicate for smooth scroll
+    // Force scroll animation to run after dynamic content (some browsers don't re-trigger when innerHTML changes)
+    container.style.animation = 'none';
+    container.offsetHeight; // trigger reflow
+    container.style.animation = 'scroll-left 30s linear infinite';
 
     // Clean up old bottom container if it still exists
     const oldContainer = document.getElementById('announcementContainer');
@@ -415,22 +551,20 @@ function handleSearch() {
         return;
     }
 
-    // STRICT MATCHING LOGIC (v2.5) - Improved Normalization
-    // 1. Exact Match: Must match the full code in database (non-series)
-    const exactMatch = RECALL_DATA.find(item => {
-        if (item.isSeries) return false;
-        // Normalize both sides for comparison to handle hyphens/spaces
-        const dbSanitized = normalizeBatch(item.code).sanitized;
-        const dbFuzzy = normalizeBatch(item.code).fuzzy;
-        return sanitized === dbSanitized || fuzzy === dbFuzzy || sanitized === item.code || fuzzy === item.code;
-    });
+    // STRICT MATCHING LOGIC (v3.0) - Index-based O(1) + Series scan
+    // 1. Exact Match: O(1) lookup via pre-built index
+    const exactMatch = _exactIndex.get(sanitized) || _exactIndex.get(fuzzy);
 
-    // 2. Series Match: Must match code marked as isSeries in database
-    const seriesMatch = RECALL_DATA.find(item => {
-        if (!item.isSeries) return false;
-        const dbSanitized = normalizeBatch(item.code).sanitized;
-        return sanitized.startsWith(dbSanitized) || sanitized.startsWith(item.code);
-    });
+    // 2. Series Match: scan only series entries (typically very few)
+    let seriesMatch = null;
+    if (!exactMatch) {
+        for (const entry of _seriesEntries) {
+            if (sanitized.startsWith(entry.sanitized) || sanitized.startsWith(entry.raw)) {
+                seriesMatch = entry.item;
+                break;
+            }
+        }
+    }
 
     if (exactMatch) {
         renderResult('critical', sanitized, exactMatch);
@@ -673,7 +807,7 @@ if (!localStorage.getItem('aegis_agreed')) {
     disclaimerModal.classList.add('hidden');
 }
 
-searchInput.addEventListener('input', handleSearch);
+searchInput.addEventListener('input', debounce(handleSearch, 150));
 
 clearBtn.addEventListener('click', () => {
     searchInput.value = '';
