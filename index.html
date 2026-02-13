@@ -51,7 +51,7 @@
 
     <!-- Recall Announcement Scroll Banner -->
     <div
-        class="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-700 text-white py-2 overflow-hidden relative shadow-md">
+        class="bg-gradient-to-r from-red-800 via-red-600 to-red-800 text-white py-2 overflow-hidden relative shadow-md border-b border-red-900/20">
         <div class="version-scroll-container">
             <div class="version-scroll-content" id="recallScrollContent">
                 <!-- Content injected by script.js -->
@@ -133,27 +133,38 @@
                             codes?</span>
                     </button>
 
-                    <div id="batchGuidePanel" class="hidden mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 slide-up">
-                        <div class="glass-card p-4 rounded-2xl border border-slate-100 text-left">
-                            <p data-i18n="batch_guide_date"
-                                class="text-[9px] font-black text-blue-600 uppercase tracking-widest mb-1">Date Format
-                            </p>
-                            <p data-i18n="batch_guide_date_desc" class="text-xs text-slate-600 font-bold leading-tight">
-                                Found on Danone/Aptamil (e.g., DD.MM.YYYY)</p>
+                    <div id="batchGuidePanel" class="hidden mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 slide-up">
+                        <div class="glass-card p-5 rounded-2xl border border-slate-100 text-left bg-white/60">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-lg">📅</span>
+                                <p data-i18n="batch_guide_date"
+                                    class="text-[10px] font-black text-blue-600 uppercase tracking-widest">Date Format
+                                </p>
+                            </div>
+                            <p data-i18n="batch_guide_date_desc"
+                                class="text-[13px] text-slate-600 font-bold leading-snug">Found on Danone/Aptamil (e.g.,
+                                DD.MM.YYYY)</p>
                         </div>
-                        <div class="glass-card p-4 rounded-2xl border border-slate-100 text-left">
-                            <p data-i18n="batch_guide_serial"
-                                class="text-[9px] font-black text-blue-600 uppercase tracking-widest mb-1">Serial Number
-                            </p>
+                        <div class="glass-card p-5 rounded-2xl border border-slate-100 text-left bg-white/60">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-lg">🔢</span>
+                                <p data-i18n="batch_guide_serial"
+                                    class="text-[10px] font-black text-blue-600 uppercase tracking-widest">Serial Number
+                                </p>
+                            </div>
                             <p data-i18n="batch_guide_serial_desc"
-                                class="text-xs text-slate-600 font-bold leading-tight">10-digit manufacturing codes</p>
-                        </div>
-                        <div class="glass-card p-4 rounded-2xl border border-slate-100 text-left">
-                            <p data-i18n="batch_guide_series"
-                                class="text-[9px] font-black text-blue-600 uppercase tracking-widest mb-1">Series Prefix
+                                class="text-[13px] text-slate-600 font-bold leading-snug">10-digit manufacturing codes
                             </p>
+                        </div>
+                        <div class="glass-card p-5 rounded-2xl border border-slate-100 text-left bg-white/60">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-lg">🏷️</span>
+                                <p data-i18n="batch_guide_series"
+                                    class="text-[10px] font-black text-blue-600 uppercase tracking-widest">Series Prefix
+                                </p>
+                            </div>
                             <p data-i18n="batch_guide_series_desc"
-                                class="text-xs text-slate-600 font-bold leading-tight">First 4 digits of a production
+                                class="text-[13px] text-slate-600 font-bold leading-snug">First 4 digits of a production
                                 batch</p>
                         </div>
                     </div>
@@ -240,8 +251,8 @@
     </div>
 
     <!-- Strict Terms Disclaimer Modal -->
-    <div id="disclaimerModal" class="fixed inset-0 z-[100] flex items-center justify-center p-4"
-        role="dialog" aria-modal="true" aria-labelledby="disclaimerTitle">
+    <div id="disclaimerModal" class="fixed inset-0 z-[100] flex items-center justify-center p-4" role="dialog"
+        aria-modal="true" aria-labelledby="disclaimerTitle">
         <div class="modal-overlay absolute inset-0"></div>
         <div
             class="glass-card bg-white rounded-[2.5rem] p-8 sm:p-12 max-w-lg w-full relative z-10 shadow-2xl border border-white/20 slide-up">
@@ -251,7 +262,8 @@
                     ⚖️
                 </div>
                 <div class="space-y-4">
-                    <h3 id="disclaimerTitle" class="text-2xl font-black text-slate-900 tracking-tight">Strict Compliance Notice</h3>
+                    <h3 id="disclaimerTitle" class="text-2xl font-black text-slate-900 tracking-tight">Strict Compliance
+                        Notice</h3>
                     <div class="space-y-4 text-slate-600 text-sm leading-relaxed">
                         <p>Loading legal notice...</p>
                         <p></p>

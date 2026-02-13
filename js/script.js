@@ -63,13 +63,13 @@ const I18N = {
         footer_copyright: "© 2026 SafeFeed Action • Emergency Public Interest Project",
         footer_desc: "A temporary emergency response by MilesXLab (A Tech Dad). This project will be archived once the recall crisis stabilizes.",
         batch_guide_btn: "How to identify codes?",
-        batch_guide_title: "Batch Code Guide",
-        batch_guide_date: "Date Format",
-        batch_guide_date_desc: "Found on Danone/Aptamil (e.g., DD.MM.YYYY)",
-        batch_guide_serial: "Serial Number",
-        batch_guide_serial_desc: "10-digit manufacturing codes",
-        batch_guide_series: "Series Prefix",
-        batch_guide_series_desc: "First 4 digits of a production batch"
+        batch_guide_title: "Batch Identification Guide",
+        batch_guide_date: "THT / Best Before Date",
+        batch_guide_date_desc: "Location: Bottom of can. Format: DD.MM.YYYY (e.g., 27.02.2027).",
+        batch_guide_serial: "Standard Batch (8-10 Characters)",
+        batch_guide_serial_desc: "Location: Base or Lid. Mix of letters/numbers (e.g., 43490748G1).",
+        batch_guide_series: "Recall Series Prefix",
+        batch_guide_series_desc: "Location: First part of the batch code. Usually 4 digits."
     },
     zh: {
         project_name: "SafeFeed Action (全球盾)",
@@ -134,13 +134,13 @@ const I18N = {
         footer_copyright: "© 2026 SafeFeed Action • 紧急公益项目",
         footer_desc: "由 MilesXLab (一位技术背景的爸爸) 发起的临时应急响应。一旦召回危机稳定，本项目将被归档。",
         batch_guide_btn: "如何识别批次？",
-        batch_guide_title: "批次类型指南",
-        batch_guide_date: "日期格式",
-        batch_guide_date_desc: "常见于达能/爱他美 (如: DD.MM.YYYY)",
-        batch_guide_serial: "流水号",
-        batch_guide_serial_desc: "10位纯数字生产编码",
-        batch_guide_series: "系列前缀",
-        batch_guide_series_desc: "生产批次的前4位数字"
+        batch_guide_title: "批次与位置核对指南",
+        batch_guide_date: "THT / 保质期（日期）",
+        batch_guide_date_desc: "位置：罐底。格式如 DD.MM.YYYY (例: 27.02.2027)。",
+        batch_guide_serial: "标准编码 (8-10位)",
+        batch_guide_serial_desc: "位置：罐底或瓶盖。字母与数字组合 (例: 43490748G1)。",
+        batch_guide_series: "整线系列前缀 (4位)",
+        batch_guide_series_desc: "位置：批次编码的前4位。官方通告整线风险时使用。"
     }
 };
 
@@ -296,7 +296,8 @@ function normalizeBatch(code) {
 
 // --- SEARCH INDEX (built once at load time for O(1) lookups) ---
 // Resolve lookup table references and build fast search maps
-const _exactIndex = new Map();   // sanitized/fuzzy/raw -> item (non-series only)
+// UPDATED: Support multiple entries per batch code (same batch in different countries/brands)
+const _exactIndex = new Map();   // sanitized/fuzzy/raw -> Array of items (non-series only)
 const _seriesEntries = [];       // series items with pre-computed sanitized codes
 
 (function buildSearchIndex() {
@@ -317,10 +318,19 @@ const _seriesEntries = [];       // series items with pre-computed sanitized cod
         if (item.isSeries) {
             _seriesEntries.push({ sanitized: dbSanitized, raw: item.code, item });
         } else {
-            // Index by all possible match keys
-            if (dbSanitized && !_exactIndex.has(dbSanitized)) _exactIndex.set(dbSanitized, item);
-            if (dbFuzzy && !_exactIndex.has(dbFuzzy)) _exactIndex.set(dbFuzzy, item);
-            if (item.code && !_exactIndex.has(item.code)) _exactIndex.set(item.code, item);
+            // Index by all possible match keys - STORE ARRAYS to support duplicates
+            if (dbSanitized) {
+                if (!_exactIndex.has(dbSanitized)) _exactIndex.set(dbSanitized, []);
+                _exactIndex.get(dbSanitized).push(item);
+            }
+            if (dbFuzzy && dbFuzzy !== dbSanitized) {
+                if (!_exactIndex.has(dbFuzzy)) _exactIndex.set(dbFuzzy, []);
+                _exactIndex.get(dbFuzzy).push(item);
+            }
+            if (item.code && item.code !== dbSanitized && item.code !== dbFuzzy) {
+                if (!_exactIndex.has(item.code)) _exactIndex.set(item.code, []);
+                _exactIndex.get(item.code).push(item);
+            }
         }
     }
 })();
@@ -495,45 +505,61 @@ function updateLang() {
 // Announcement Renderer (Scrolling Banner) - Data-driven from ANNOUNCEMENTS
 function renderAnnouncement() {
     const container = document.getElementById('recallScrollContent');
-    if (!container) return; // Guard clause
+    if (!container) return;
 
-    // Use data-driven announcements if available, fall back to I18N
     const announcements = (typeof ANNOUNCEMENTS !== 'undefined') ? ANNOUNCEMENTS : [];
 
+    // Highlight helper for critical info
+    const highlight = (text) => {
+        if (!text) return '';
+        return text
+            .replace(/(\d+)/g, '<span class="text-yellow-300 font-black px-1">$1</span>')
+            .replace(/(URGENT|紧急|MASSIVE|剧烈扩大|召回)/gi, '<span class="text-white border-b-2 border-yellow-400/50">$1</span>')
+            .replace(/(Alula|Aptamil|Bimbosan|Danone|Lactalis|Nestlé|Sanulac|Vitagermine)/gi, '<span class="text-red-100 font-bold">$1</span>');
+    };
+
+    let contentHtml = "";
     if (announcements.length > 0) {
-        const itemsHtml = announcements.map(a => {
+        contentHtml = announcements.map(a => {
             const localized = a[currentLang] || a['en'];
             return `
-                <a href="${a.linkUrl}" target="_blank" class="inline-flex items-center mx-8 hover:text-red-100 transition-colors py-1 group">
-                    <span class="text-lg mr-2 animate-pulse" aria-hidden="true">📢</span>
-                    <span class="font-black uppercase tracking-tight mr-2 underline decoration-red-300 underline-offset-4">${localized.title}</span>
-                    <span class="opacity-90 mr-3 text-xs font-medium hidden sm:inline">${localized.body}</span>
-                    <span class="font-bold bg-white/20 px-2 py-0.5 rounded text-[10px] uppercase tracking-wider group-hover:bg-white group-hover:text-red-600 transition-all">🔗 ${localized.link}</span>
-                </a>
+                <div class="inline-flex items-center mx-12 py-1 flex-shrink-0">
+                    <span class="text-xl mr-3" aria-hidden="true">�</span>
+                    <span class="font-black uppercase tracking-wider mr-3">${highlight(localized.title)}</span>
+                    <span class="opacity-95 text-sm font-bold hidden sm:inline">${highlight(localized.body)}</span>
+                </div>
             `;
         }).join('');
-        container.innerHTML = itemsHtml + itemsHtml; // Duplicate for smooth scroll
     } else {
-        // Fallback to hardcoded I18N
         const t = I18N[currentLang];
-        const linkUrl = "https://www.produktwarnung.eu/2026/02/05/rueckruf-gesundheitsgefahr-danone-ruft-aptamil-babynahrung-zurueck/36778";
-        const itemHtml = `
-            <a href="${linkUrl}" target="_blank" class="inline-flex items-center mx-8 hover:text-red-100 transition-colors py-1 group">
-                <span class="text-lg mr-2 animate-pulse" aria-hidden="true">📢</span>
-                <span class="font-black uppercase tracking-tight mr-2 underline decoration-red-300 underline-offset-4">${t.announcement_title}</span>
-                <span class="opacity-90 mr-3 text-xs font-medium hidden sm:inline">${t.announcement_body}</span>
-                <span class="font-bold bg-white/20 px-2 py-0.5 rounded text-[10px] uppercase tracking-wider group-hover:bg-white group-hover:text-red-600 transition-all">🔗 ${t.announcement_link}</span>
-            </a>
+        contentHtml = `
+            <div class="inline-flex items-center mx-12 py-1 flex-shrink-0">
+                <span class="text-xl mr-3" aria-hidden="true">�</span>
+                <span class="font-black uppercase tracking-wider mr-3">${highlight(t.announcement_title)}</span>
+                <span class="opacity-95 text-sm font-bold hidden sm:inline">${highlight(t.announcement_body)}</span>
+            </div>
         `;
-        container.innerHTML = itemHtml + itemHtml;
     }
 
-    // Force scroll animation to run after dynamic content (some browsers don't re-trigger when innerHTML changes)
-    container.style.animation = 'none';
-    container.offsetHeight; // trigger reflow
-    container.style.animation = 'scroll-left 30s linear infinite';
+    // Repeat 4x for smooth looping
+    container.innerHTML = contentHtml.repeat(4);
 
-    // Clean up old bottom container if it still exists
+    // Reset animation logic
+    container.style.animation = 'none';
+    container.style.display = 'none';
+    void container.offsetHeight; // trigger reflow
+
+    container.style.display = 'inline-flex';
+    container.style.whiteSpace = 'nowrap';
+    container.style.willChange = 'transform';
+
+    // Higher reliability start
+    requestAnimationFrame(() => {
+        setTimeout(() => {
+            container.style.animation = 'scroll-left 120s linear infinite';
+        }, 10);
+    });
+
     const oldContainer = document.getElementById('announcementContainer');
     if (oldContainer) oldContainer.remove();
 }
@@ -551,13 +577,14 @@ function handleSearch() {
         return;
     }
 
-    // STRICT MATCHING LOGIC (v3.0) - Index-based O(1) + Series scan
-    // 1. Exact Match: O(1) lookup via pre-built index
-    const exactMatch = _exactIndex.get(sanitized) || _exactIndex.get(fuzzy);
+    // STRICT MATCHING LOGIC (v3.1) - Index-based O(1) + Series scan
+    // UPDATED: Handle multiple matches per batch code
+    // 1. Exact Match: O(1) lookup via pre-built index (returns array)
+    const exactMatches = _exactIndex.get(sanitized) || _exactIndex.get(fuzzy) || [];
 
     // 2. Series Match: scan only series entries (typically very few)
     let seriesMatch = null;
-    if (!exactMatch) {
+    if (exactMatches.length === 0) {
         for (const entry of _seriesEntries) {
             if (sanitized.startsWith(entry.sanitized) || sanitized.startsWith(entry.raw)) {
                 seriesMatch = entry.item;
@@ -566,12 +593,12 @@ function handleSearch() {
         }
     }
 
-    if (exactMatch) {
-        renderResult('critical', sanitized, exactMatch);
+    if (exactMatches.length > 0) {
+        renderResult('critical', sanitized, exactMatches);
     } else if (seriesMatch) {
-        renderResult('caution', sanitized, seriesMatch);
+        renderResult('caution', sanitized, [seriesMatch]);
     } else if (sanitized.length >= 4) {
-        renderResult('none', sanitized);
+        renderResult('none', sanitized, []);
     }
 }
 
@@ -602,14 +629,17 @@ function renderIdle() {
     `;
 }
 
-function renderResult(type, code, itemData = null) {
+function renderResult(type, code, matches = []) {
     const t = I18N[currentLang];
+    const hasMatches = matches.length > 0;
+    const itemData = hasMatches ? matches[0] : null; // Primary item for single-mode UI
+
     let config = {
         bg: "bg-slate-100",
         border: "border-slate-300",
         text: "text-slate-900",
         bottleStatus: "status-safe",
-        themeColor: "#3B82F6", // Default Safe uses Blue (neutral, not misleading)
+        themeColor: "#3B82F6",
         title: t.status_none,
         desc: t.desc_none,
         sourceBtn: "",
@@ -633,49 +663,138 @@ function renderResult(type, code, itemData = null) {
             desc: isCritical ? t.desc_critical : t.desc_caution,
             seriesLabel: type === 'caution' ? `
                 <div class="mt-4 p-4 bg-amber-100 border-l-4 border-amber-600 rounded-lg text-xs text-amber-950 leading-relaxed font-semibold">
-                    ${t.series_notice.replace('[Prefix]', itemData.code)}
+                    ${t.series_notice.replace('[Prefix]', code)}
                 </div>` : "",
-            sourceBtn: `
+            sourceBtn: hasMatches ? `
                 <a href="${itemData.docUrl}" target="_blank" class="block w-full text-center py-4 border-2 ${borderColor} ${accentColor} rounded-2xl text-xs font-black uppercase tracking-widest mt-2 hover:opacity-80 transition-all shadow-sm">
                     🔗 ${t.view_source}
                 </a>
-            `
+            ` : ""
         };
     }
 
-    const detailGrid = itemData ? `
-        <div class="grid grid-cols-2 gap-4 py-4 border-t border-slate-100">
-            <div>
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">${t.label_brand}</p>
-                <p class="text-sm font-black text-slate-800">${itemData.subBrand || 'Global Brand'}</p>
+    // MULTI-RESULT RENDERING LOGIC (v4.0)
+    // If multiple matches found, we use a specialized grouping UI
+    let contentHtml = "";
+
+    if (matches.length > 1) {
+        // Group matches by Brand
+        const grouped = matches.reduce((acc, m) => {
+            const brandKey = m.brand || "Other Brands";
+            if (!acc[brandKey]) acc[brandKey] = [];
+            acc[brandKey].push(m);
+            return acc;
+        }, {});
+
+        const groupCount = Object.keys(grouped).length;
+
+        contentHtml = `
+            <div class="px-6 pb-6 space-y-6">
+                <div class="py-4 border-t border-slate-100">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                            ${matches.length} ${matches.length > 1 ? 'Matches Found' : 'Match Found'}
+                        </span>
+                        <span class="px-2 py-0.5 bg-red-100 text-red-700 text-[9px] font-black rounded-full uppercase">
+                            ${groupCount} ${groupCount > 1 ? 'Brands' : 'Brand'}
+                        </span>
+                    </div>
+                </div>
+
+                ${Object.entries(grouped).map(([brand, brandMatches]) => `
+                    <div class="brand-group space-y-3">
+                        <div class="flex items-center gap-2">
+                            <div class="w-1 h-4 bg-red-600 rounded-full"></div>
+                            <h4 class="text-xs font-black text-slate-900 uppercase tracking-wider">${brand}</h4>
+                        </div>
+                        <div class="space-y-3 pl-3">
+                            ${brandMatches.map(m => `
+                                <div class="p-4 bg-white border border-slate-100 rounded-2xl shadow-sm hover:border-red-200 transition-colors">
+                                    <div class="flex justify-between items-start gap-3">
+                                        <div class="flex-1 min-w-0">
+                                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-tight">${m.subBrand || brand}</p>
+                                            <p class="text-sm font-black text-slate-800 truncate">${m.product}</p>
+                                            <div class="flex items-center gap-2 mt-1.5">
+                                                <span class="text-xs">${COUNTRY_FLAGS[m.country] || "🌐"}</span>
+                                                <span class="text-[11px] font-bold text-slate-600">${m.country}</span>
+                                                <span class="text-[11px] font-bold text-slate-300">•</span>
+                                                <span class="text-[11px] font-bold text-slate-600">${m.specification}</span>
+                                            </div>
+                                        </div>
+                                        <a href="${m.docUrl}" target="_blank" class="p-2 bg-slate-50 rounded-xl hover:bg-red-50 hover:text-red-600 transition-colors" title="${t.view_source}">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                        </a>
+                                    </div>
+                                    <p class="text-[10px] font-bold text-red-600 bg-red-50/50 p-2 rounded-lg mt-3 border border-red-100/30 line-clamp-2">
+                                        ${getTranslatedReason(m.reason, currentLang)}
+                                    </p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('')}
+                
+                <div class="pt-2">
+                    ${getHotlineButtons(matches[0])}
+                </div>
             </div>
-            <div>
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">${t.label_spec}</p>
-                <p class="text-sm font-black text-slate-800">${itemData.specification || '800g'}</p>
+        `;
+    } else {
+        // SINGLE RESULT GRID (Original v3.0 Detail Grid)
+        contentHtml = itemData ? `
+            <div class="px-6 pb-6 space-y-4">
+                <div class="grid grid-cols-2 gap-4 py-4 border-t border-slate-100">
+                    <div>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">${t.label_brand}</p>
+                        <p class="text-sm font-black text-slate-800">${itemData.subBrand || 'Global Brand'}</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">${t.label_spec}</p>
+                        <p class="text-sm font-black text-slate-800">${itemData.specification || '800g'}</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">${t.label_country}</p>
+                        <p class="text-sm font-black text-slate-800 flex items-center gap-2">
+                            <span>${COUNTRY_FLAGS[itemData.country] || "🌐"}</span>
+                            ${itemData.country}
+                        </p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">${t.label_source}</p>
+                        <p class="text-[11px] font-bold text-blue-600 underline truncate">${itemData.sourceDisplay}</p>
+                    </div>
+                    <div class="col-span-2">
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">${t.label_reason}</p>
+                        <p class="text-xs font-bold text-red-600 bg-red-50 p-2 rounded-lg mt-1 border border-red-100">${getTranslatedReason(itemData.reason, currentLang)}</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4 pt-2">
+                    <div class="grid grid-cols-1 gap-3">
+                        ${config.sourceBtn}
+                        ${getHotlineButtons(itemData)}
+                    </div>
+                </div>
             </div>
-            <div>
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">${t.label_country}</p>
-                <p class="text-sm font-black text-slate-800 flex items-center gap-2">
-                    <span>${COUNTRY_FLAGS[itemData.country] || "🌐"}</span>
-                    ${itemData.country}
-                </p>
-            </div>
-            <div>
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">${t.label_source}</p>
-                <p class="text-[11px] font-bold text-blue-600 underline truncate">${itemData.sourceDisplay}</p>
-            </div>
-            <div class="col-span-2">
-                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">${t.label_reason}</p>
-                <p class="text-xs font-bold text-red-600 bg-red-50 p-2 rounded-lg mt-1 border border-red-100">${getTranslatedReason(itemData.reason, currentLang)}</p>
-            </div>
-        </div>
-    ` : '';
+        ` : '';
+    }
 
     resultsContainer.innerHTML = `
-        <div class="glass-card rounded-[2.5rem] overflow-hidden border-2 ${config.border} slide-up shadow-2xl relative">
-            <div class="p-6 space-y-4">
-                <!-- Premium Little Star SVG Character -->
-                <div class="w-48 h-60 mx-auto transition-all duration-700">
+        <div class="glass-card rounded-[2.5rem] overflow-hidden border-2 ${config.border} ${type === 'critical' ? 'alarm-burst alarm-critical' : 'slide-up'} shadow-2xl relative ${config.bg}">
+            <!-- Explosive Flash Overlay -->
+            ${type === 'critical' ? '<div class="flash-overlay"></div>' : ''}
+            
+            <!-- High-Intensity Dynamic Alarm Overlay -->
+            ${type === 'critical' ? `
+                <div class="absolute inset-0 pointer-events-none z-0" style="animation: alarm-pulse-red 1.5s ease-out infinite; opacity: 0.3;"></div>
+                <div class="absolute inset-0 pointer-events-none z-0 bg-gradient-to-b from-transparent via-red-500/40 to-transparent" style="height: 60px; width: 100%; animation: scan-line 2s linear infinite;"></div>
+            ` : type === 'caution' ? `
+                <div class="absolute inset-0 pointer-events-none z-0" style="animation: alarm-orange 1.8s infinite"></div>
+            ` : ''}
+            
+            <div class="p-6 space-y-4 relative z-10">
+                <!-- Premium Character Header (Always present but smaller for multi-results) -->
+                <div class="${matches.length > 1 ? 'w-32 h-40' : 'w-48 h-60'} mx-auto transition-all duration-700">
                     <div class="bottle-container ${config.bottleStatus} w-full h-full">
                         <svg class="bottle-svg" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
                             <defs>
@@ -683,71 +802,80 @@ function renderResult(type, code, itemData = null) {
                                     <path d="M45 75 L115 75 Q130 75 130 110 L130 170 Q130 205 80 205 Q30 205 30 170 L30 110 Q30 75 45 75 Z" />
                                 </clipPath>
                             </defs>
-                            
-                            <!-- Premium Outlines & Base -->
                             <g fill="none" stroke="#1E293B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-                                <!-- Nipple -->
                                 <path d="M80 15 Q68 15 68 35 L92 35 Q92 15 80 15Z" fill="#FFE4E6" />
-                                <!-- Cap (Dynamic Theme Color) -->
                                 <path d="M48 35 L112 35 Q120 35 120 45 L120 65 Q120 75 112 75 L48 75 Q40 75 40 65 L40 45 Q40 35 48 35Z" fill="${config.themeColor}" />
-                                <!-- Body Base -->
                                 <path d="M45 75 L115 75 Q130 75 130 110 L130 170 Q130 205 80 205 Q30 205 30 170 L30 110 Q30 75 45 75 Z" fill="white" />
                             </g>
-                            
-                            <!-- Dynamic Liquid Fill -->
                             <g clip-path="url(#bodyClip)">
                                 <path class="milk-fill" d="M20 210 L140 210 L140 100 Q80 90 20 100 Z" />
-                                <!-- Premium Inner Decorations (Sparkles/Bubbles) -->
-                                <circle cx="50" cy="180" r="4" fill="white" opacity="0.4" />
-                                <circle cx="110" cy="190" r="6" fill="white" opacity="0.3" />
-                                <circle cx="80" cy="170" r="3" fill="white" opacity="0.5" />
+                                <!-- Animated Premium Bubbles -->
+                                <circle cx="50" cy="180" r="4" fill="white" opacity="0.4">
+                                    <animate attributeName="cy" values="180;160;180" dur="3s" repeatCount="indefinite" />
+                                    <animate attributeName="opacity" values="0.4;0.7;0.4" dur="3s" repeatCount="indefinite" />
+                                </circle>
+                                <circle cx="110" cy="190" r="6" fill="white" opacity="0.3">
+                                    <animate attributeName="cy" values="190;175;190" dur="4s" repeatCount="indefinite" />
+                                    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="4s" repeatCount="indefinite" />
+                                </circle>
+                                <circle cx="80" cy="170" r="3" fill="white" opacity="0.5">
+                                    <animate attributeName="cy" values="170;150;170" dur="2.5s" repeatCount="indefinite" />
+                                    <animate attributeName="opacity" values="0.5;0.8;0.5" dur="2.5s" repeatCount="indefinite" />
+                                </circle>
                             </g>
-                            
-
-                            <!-- Emotional Cartoon Expression -->
                             <g class="bottle-face">
                                 ${type === 'none' ? `
                                     <!-- Status 1: Safe - Happy & Sparkling -->
                                     <g fill="#1E293B">
                                         <circle cx="65" cy="125" r="8" /> 
                                         <circle cx="95" cy="125" r="8" />
-                                        <circle cx="68" cy="121" r="3" fill="white" /> 
-                                        <circle cx="98" cy="121" r="3" fill="white" />
+                                        <circle cx="68" cy="121" r="3" fill="white">
+                                            <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite" />
+                                        </circle> 
+                                        <circle cx="98" cy="121" r="3" fill="white">
+                                            <animate attributeName="opacity" values="1;0.3;1" dur="2s" begin="0.5s" repeatCount="indefinite" />
+                                        </circle>
                                     </g>
                                     <path d="M72 145 Q80 152 88 145" fill="none" stroke="#1E293B" stroke-width="4.5" stroke-linecap="round" />
                                     <ellipse cx="48" cy="148" rx="6" ry="3" fill="#FDA4AF" opacity="0.6" />
                                     <ellipse cx="112" cy="148" rx="6" ry="3" fill="#FDA4AF" opacity="0.6" />
+                                    <!-- Sparkling Stars -->
+                                    <g fill="#FCD34D">
+                                        <path d="M130 90 L132 95 L137 95 L133 98 L134 103 L130 100 L126 103 L127 98 L123 95 L128 95 Z">
+                                            <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" />
+                                        </path>
+                                        <path d="M30 120 L32 125 L37 125 L33 128 L34 133 L30 130 L26 133 L27 128 L23 125 L28 125 Z">
+                                            <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" />
+                                        </path>
+                                    </g>
                                 ` : type === 'caution' ? `
                                     <!-- Status 2: Warning - Worried -->
                                     <g fill="#1E293B">
                                         <circle cx="65" cy="125" r="8" /> 
                                         <circle cx="95" cy="125" r="8" />
-                                        <circle cx="68" cy="121" r="2" fill="white" opacity="0.4" /> 
-                                        <circle cx="98" cy="121" r="2" fill="white" opacity="0.4" />
                                     </g>
                                     <path d="M60 112 Q65 105 70 110" fill="none" stroke="#1E293B" stroke-width="3" stroke-linecap="round" />
                                     <path d="M90 110 Q95 105 100 112" fill="none" stroke="#1E293B" stroke-width="3" stroke-linecap="round" />
                                     <path d="M72 152 L88 152" fill="none" stroke="#1E293B" stroke-width="4.5" stroke-linecap="round" />
-                                    <!-- Caution Icon -->
                                     <g transform="translate(145, 80)">
                                         <path d="M0 -15 L15 15 L-15 15 Z" fill="#F59E0B" stroke="#1E293B" stroke-width="3" />
                                         <text y="10" text-anchor="middle" fill="white" font-size="16" font-weight="950" font-family="Arial">!</text>
                                     </g>
                                 ` : `
-                                    <!-- Status 3: Danger - Teary & Sad (Unified Style) -->
+                                    <!-- Status 3: Danger - Teary & Sad -->
                                     <g fill="#1E293B">
                                         <circle cx="65" cy="125" r="8" /> 
                                         <circle cx="95" cy="125" r="8" />
-                                        <!-- Teary highlights at bottom of eyes -->
-                                        <circle cx="68" cy="129" r="2.5" fill="white" opacity="0.8" /> 
-                                        <circle cx="98" cy="129" r="2.5" fill="white" opacity="0.8" />
+                                        <circle cx="68" cy="129" r="2.5" fill="white" opacity="0.8">
+                                            <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1s" repeatCount="indefinite" />
+                                        </circle> 
+                                        <circle cx="98" cy="129" r="2.5" fill="white" opacity="0.8">
+                                            <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1s" begin="0.5s" repeatCount="indefinite" />
+                                        </circle>
                                     </g>
-                                    <!-- Sad/Distressed Eyebrows -->
                                     <path d="M58 115 Q65 105 72 112" fill="none" stroke="#1E293B" stroke-width="3" stroke-linecap="round" />
                                     <path d="M88 112 Q95 105 102 115" fill="none" stroke="#1E293B" stroke-width="3" stroke-linecap="round" />
                                     <path d="M72 155 Q80 148 88 155" fill="none" stroke="#1E293B" stroke-width="4.5" stroke-linecap="round" />
-                                    
-                                    <!-- Animated Tears -->
                                     <path d="M65 133 Q60 145 60 155" fill="none" stroke="#60A5FA" stroke-width="4" stroke-linecap="round" opacity="0.8">
                                         <animate attributeName="stroke-dasharray" values="0,50;50,0" dur="1.5s" repeatCount="indefinite" />
                                     </path>
@@ -763,7 +891,7 @@ function renderResult(type, code, itemData = null) {
                 <div class="text-center">
                     <span class="text-[9px] font-black uppercase tracking-[0.2em] ${config.text} opacity-40 block mb-0.5">${t.label_batch}</span>
                     <h3 class="${type === 'critical' ? 'text-4xl' : 'text-3xl'} font-black ${config.text} tracking-tight font-sans">${code}</h3>
-                    ${itemData ? `<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">${itemData.product}</p>` : ''}
+                    ${(hasMatches && matches.length === 1) ? `<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">${itemData.product}</p>` : ''}
                 </div>
                 
                 <div class="py-4 border-t border-slate-100 text-center">
@@ -774,16 +902,11 @@ function renderResult(type, code, itemData = null) {
                     <p class="text-[11px] text-slate-500 font-bold leading-snug max-w-xs mx-auto">${config.desc}</p>
                     ${config.seriesLabel}
                 </div>
-
-                ${detailGrid}
-
-                <div class="space-y-4 pt-2">
-                    <div class="grid grid-cols-1 gap-3">
-                        ${config.sourceBtn}
-                        ${getHotlineButtons(itemData)}
-                    </div>
-                </div>
             </div>
+
+            <!-- Dynamic Body Content (Single Grid or Multi-Group List) -->
+            ${contentHtml}
+
             ${type === 'critical' ? '<div class="absolute top-0 left-0 w-full h-1 bg-red-600 animate-pulse z-20"></div>' : ''}
         </div>
     `;

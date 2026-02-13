@@ -205,6 +205,18 @@ OFFICIAL_SOURCES = [
         "name": "FSANZ Australia/NZ - Multi-Brand Recall",
         "url": "https://www.foodstandards.gov.au/food-recalls",
         "date": "2026-01-15"
+    },
+    {
+        "id": "GR_EOF",
+        "name": "EOF Greece - Official Pharmaceutical/Food Recall",
+        "url": "https://www.eof.gr/web/guest/decisions/recalls",
+        "date": "2026-02-10"
+    },
+    {
+        "id": "NL_NVWA",
+        "name": "NVWA Netherlands - Nutricia Recall Notice",
+        "url": "https://www.nvwa.nl/onderwerpen/productwaarschuwingen",
+        "date": "2026-02-08"
     }
 ]
 
