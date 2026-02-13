@@ -49,11 +49,13 @@ a {
 /* Mobile optimizations */
 @media (max-width: 640px) {
     #searchInput {
-        font-size: 1.125rem; /* 18px */
+        font-size: 1.125rem;
+        /* 18px */
     }
-    
+
     .glass-card {
-        border-radius: 1rem; /* Slightly smaller on mobile */
+        border-radius: 1rem;
+        /* Slightly smaller on mobile */
     }
 }
 
@@ -177,20 +179,177 @@ a {
     }
 }
 
-.slide-up {
-    animation: slide-up 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+@keyframes heartbeat-alarm {
+    0% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+
+    10% {
+        transform: scale(1.08);
+        filter: brightness(1.4);
+    }
+
+    20% {
+        transform: scale(1.03);
+        filter: brightness(1.2);
+    }
+
+    35% {
+        transform: scale(1.15);
+        filter: brightness(1.8);
+    }
+
+    50% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+
+    100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
 }
 
-@keyframes slide-up {
+@keyframes alarm-pulse-red {
+
+    0%,
+    100% {
+        background-color: rgba(239, 68, 68, 0);
+    }
+
+    15% {
+        background-color: rgba(239, 68, 68, 0.2);
+    }
+
+    35% {
+        background-color: rgba(239, 68, 68, 0.35);
+    }
+
+    55% {
+        background-color: rgba(239, 68, 68, 0);
+    }
+}
+
+@keyframes alarm-orange {
+
+    0%,
+    100% {
+        background-color: rgba(245, 158, 11, 0);
+    }
+
+    50% {
+        background-color: rgba(245, 158, 11, 0.15);
+    }
+}
+
+@keyframes border-flash-red {
+
+    0%,
+    100% {
+        border-color: #B91C1C;
+    }
+
+    50% {
+        border-color: #EF4444;
+    }
+}
+
+@keyframes shake-alarm {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translate(-3px, 1px) rotate(-1deg);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translate(3px, -1px) rotate(1deg);
+    }
+}
+
+.alarm-critical {
+    animation: alarm-pulse-red 1.5s ease-out infinite,
+        heartbeat-alarm 1.5s ease-out infinite,
+        border-flash-red 0.4s ease-in-out infinite,
+        shake-alarm 0.2s linear infinite;
+    box-shadow: 0 0 70px rgba(239, 68, 68, 0.5);
+    z-index: 50;
+    position: relative;
+}
+
+@keyframes scan-line {
     from {
-        opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(-100%);
     }
 
     to {
-        opacity: 1;
-        transform: translateY(0);
+        transform: translateY(200%);
     }
+}
+
+@keyframes burst-impact {
+    0% {
+        transform: scale(0.5) translateY(50px);
+        opacity: 0;
+        filter: brightness(2);
+    }
+
+    60% {
+        transform: scale(1.1) translateY(-10px);
+        opacity: 1;
+        filter: brightness(1.5);
+    }
+
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        filter: brightness(1);
+    }
+}
+
+@keyframes flash-burst {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.alarm-burst {
+    animation: burst-impact 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.flash-overlay {
+    position: absolute;
+    inset: 0;
+    background: white;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 60;
+    animation: flash-burst 0.6s ease-out forwards;
+}
+
+.slide-up {
+    animation: slide-up 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .tech-dad-gradient {
@@ -391,6 +550,7 @@ a {
 
 /* Accessibility: Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
+
     .bottle-container,
     .status-safe,
     .status-warning,
