@@ -3,7 +3,7 @@
 
 const RECALL_METADATA = {
   "version": "4.7.0 (Global Verified)",
-  "lastUpdated": "2026-02-16 04:08 (PST)",
+  "lastUpdated": "2026-02-16 04:09 (PST)",
   "coverage": "26 Regions - Official Government Sources Only",
   "totalCount": 1853,
   "authority": "FSA, FSAI, AGES, SFA, FDA, ANVISA, COFEPRIS, MZD, AFSCA, RappelConso, FSANZ, SAMR, CFS",
