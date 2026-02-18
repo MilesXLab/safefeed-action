@@ -76,7 +76,10 @@ with open('recall_database.csv', 'r', encoding='utf-8-sig') as f:
             "ri": get_reason_id(reason),
             "si": get_source_id(source_display),
             "docUrl": row['docUrl'].strip(),
-            "isSeries": is_series
+            "isSeries": is_series,
+            "sev": row.get('severity', 'L3').strip(),
+            "eh": row.get('evidence_hash', '').strip(),
+            "au": row.get('archive_url', '').strip()
         })
 
 # Sort by code
@@ -263,12 +266,12 @@ with open('js/data.js', 'w', encoding='utf-8') as f:
     f.write("// 100% Official Sources Only - No Speculative Data\n\n")
     
     metadata = json.dumps({
-        "version": "4.7.0 (Global Verified)",
+        "version": "5.0.0 (Risk Defense Kernel)",
         "lastUpdated": _now_pst.strftime("%Y-%m-%d %H:%M (PST)"),
         "coverage": f"{STATS['region_count']} Regions - Official Government Sources Only",
         "totalCount": len(batches),
         "authority": "FSA, FSAI, AGES, SFA, FDA, ANVISA, COFEPRIS, MZD, AFSCA, RappelConso, FSANZ, SAMR, CFS",
-        "integrity": "100% Verified - Official Government Deep Links"
+        "integrity": "Risk Defense Kernel Enabled - High Integrity"
     }, indent=2, ensure_ascii=False)
     
     f.write(f"const RECALL_METADATA = {metadata};\n\n")
