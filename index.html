@@ -133,120 +133,157 @@
                             codes?</span>
                     </button>
 
-                    <div id="batchGuidePanel" class="hidden mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 slide-up">
-                        <div class="glass-card p-5 rounded-2xl border border-slate-100 text-left bg-white/60">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="text-lg">📅</span>
-                                <p data-i18n="batch_guide_date"
-                                    class="text-[10px] font-black text-blue-600 uppercase tracking-widest">Date Format
+                    <div id="batchGuidePanel" class="hidden mt-6 space-y-4 slide-up">
+                        <!-- Standard Types -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div class="glass-card p-5 rounded-2xl border border-slate-100 text-left bg-white/60">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-lg">📅</span>
+                                    <p data-i18n="batch_guide_date"
+                                        class="text-[10px] font-black text-blue-600 uppercase tracking-widest">Date
+                                        Format
+                                    </p>
+                                </div>
+                                <p data-i18n="batch_guide_date_desc"
+                                    class="text-[13px] text-slate-600 font-bold leading-snug">Found on Danone/Aptamil
+                                    (e.g.,
+                                    DD/MM/YYYY)</p>
+                            </div>
+                            <div class="glass-card p-5 rounded-2xl border border-slate-100 text-left bg-white/60">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-lg">🔢</span>
+                                    <p data-i18n="batch_guide_serial"
+                                        class="text-[10px] font-black text-blue-600 uppercase tracking-widest">Serial
+                                        Number
+                                    </p>
+                                </div>
+                                <p data-i18n="batch_guide_serial_desc"
+                                    class="text-[13px] text-slate-600 font-bold leading-snug">10-digit manufacturing
+                                    codes
                                 </p>
                             </div>
-                            <p data-i18n="batch_guide_date_desc"
-                                class="text-[13px] text-slate-600 font-bold leading-snug">Found on Danone/Aptamil (e.g.,
-                                DD/MM/YYYY)</p>
+                            <div class="glass-card p-5 rounded-2xl border border-slate-100 text-left bg-white/60">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="text-lg">🏷️</span>
+                                    <p data-i18n="batch_guide_series"
+                                        class="text-[10px] font-black text-blue-600 uppercase tracking-widest">Series
+                                        Prefix
+                                    </p>
+                                </div>
+                                <p data-i18n="batch_guide_series_desc"
+                                    class="text-[13px] text-slate-600 font-bold leading-snug">First 4 digits of a
+                                    production
+                                    batch</p>
+                            </div>
                         </div>
-                        <div class="glass-card p-5 rounded-2xl border border-slate-100 text-left bg-white/60">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="text-lg">🔢</span>
-                                <p data-i18n="batch_guide_serial"
-                                    class="text-[10px] font-black text-blue-600 uppercase tracking-widest">Serial Number
-                                </p>
+
+                        <!-- Brand Specific Tips -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div class="p-4 bg-blue-50/50 rounded-2xl border border-blue-100 text-left">
+                                <p data-i18n="brand_guide_aptamil"
+                                    class="text-[11px] text-blue-800 font-bold leading-relaxed opacity-80"></p>
                             </div>
-                            <p data-i18n="batch_guide_serial_desc"
-                                class="text-[13px] text-slate-600 font-bold leading-snug">10-digit manufacturing codes
-                            </p>
-                        </div>
-                        <div class="glass-card p-5 rounded-2xl border border-slate-100 text-left bg-white/60">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="text-lg">🏷️</span>
-                                <p data-i18n="batch_guide_series"
-                                    class="text-[10px] font-black text-blue-600 uppercase tracking-widest">Series Prefix
-                                </p>
+                            <div class="p-4 bg-blue-50/50 rounded-2xl border border-blue-100 text-left">
+                                <p data-i18n="brand_guide_nestle"
+                                    class="text-[11px] text-blue-800 font-bold leading-relaxed opacity-80"></p>
                             </div>
-                            <p data-i18n="batch_guide_series_desc"
-                                class="text-[13px] text-slate-600 font-bold leading-snug">First 4 digits of a production
-                                batch</p>
+                            <div class="p-4 bg-blue-50/50 rounded-2xl border border-blue-100 text-left">
+                                <p data-i18n="brand_guide_cowgate"
+                                    class="text-[11px] text-blue-800 font-bold leading-relaxed opacity-80"></p>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Human Echo Narrative: About Section -->
+                    <section class="sre-narrative rounded-2xl p-6 sm:p-8 space-y-4">
+                        <h3 data-i18n="about_title" class="text-lg font-black text-slate-900 flex items-center gap-2">
+                            <span>👨‍💻</span> About SafeFeed Action
+                        </h3>
+                        <p data-i18n="about_body" class="text-sm text-slate-600 leading-relaxed italic">
+                            "I’m an SRE and a dad. I built this because I was searching batch numbers at midnight just
+                            like
+                            you. I moved from a 'Nestlé-only' name to 'SafeFeed Action' because keeping a brand-specific
+                            name was misleading while other brands were also being recalled. This is a non-commercial,
+                            public-interest response."
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-6 border-t border-slate-100">
+                            <a href="https://github.com/milesxlab/safefeed-action/issues" target="_blank"
+                                class="flex items-center justify-center gap-2.5 p-4 rounded-2xl bg-slate-900 text-white text-[10px] font-black uppercase tracking-[0.15em] hover:bg-slate-800 transition-all shadow-lg shadow-slate-200 active:scale-95">
+                                <span class="text-xs">📂</span>
+                                <span data-i18n="report_issue">Report Issue</span>
+                            </a>
+                            <a href="mailto:milesxlab@gmail.com"
+                                class="flex items-center justify-center gap-2.5 p-4 rounded-2xl bg-white border border-slate-200 text-slate-800 text-[10px] font-black uppercase tracking-[0.15em] hover:bg-slate-50 transition-all shadow-sm active:scale-95">
+                                <span class="text-xs">✉️</span>
+                                <span data-i18n="send_email">Send Email</span>
+                            </a>
+                        </div>
+                    </section>
+
+                    <!-- Authoritative Reference Section -->
+                    <section class="space-y-6 pt-6 sm:pt-8" aria-labelledby="sources-heading">
+                        <div
+                            class="glass-card rounded-2xl sm:rounded-[2.5rem] p-6 sm:p-10 border border-slate-100 shadow-xl bg-white/50">
+                            <h4 id="sources-heading" data-i18n="sources_title"
+                                class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-800 leading-none mb-6">
+                                Verified Independent Data Sources
+                            </h4>
+                            <div id="sourcesList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+
+                            <div id="authoritativeFooter" class="mt-8 border-t border-slate-200/50 pt-6">
+                                <p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold">
+                                    100% Brand-Agnostic Verification | Ground Truth Policy
+                                </p>
+                            </div>
+                        </div>
+                    </section>
                 </div>
 
-                <!-- Human Echo Narrative: About Section -->
-                <section class="sre-narrative rounded-2xl p-6 sm:p-8 space-y-4">
-                    <h3 data-i18n="about_title" class="text-lg font-black text-slate-900 flex items-center gap-2">
-                        <span>👨‍💻</span> About SafeFeed Action
-                    </h3>
-                    <p data-i18n="about_body" class="text-sm text-slate-600 leading-relaxed italic">
-                        "I’m an SRE and a dad. I built this because I was searching batch numbers at midnight just like
-                        you. I moved from a 'Nestlé-only' name to 'SafeFeed Action' because keeping a brand-specific
-                        name was misleading while other brands were also being recalled. This is a non-commercial,
-                        public-interest response."
-                    </p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-6 border-t border-slate-100">
-                        <a href="https://github.com/milesxlab/safefeed-action/issues" target="_blank"
-                            class="flex items-center justify-center gap-2.5 p-4 rounded-2xl bg-slate-900 text-white text-[10px] font-black uppercase tracking-[0.15em] hover:bg-slate-800 transition-all shadow-lg shadow-slate-200 active:scale-95">
-                            <span class="text-xs">📂</span>
-                            <span data-i18n="report_issue">Report Issue</span>
-                        </a>
-                        <a href="mailto:milesxlab@gmail.com"
-                            class="flex items-center justify-center gap-2.5 p-4 rounded-2xl bg-white border border-slate-200 text-slate-800 text-[10px] font-black uppercase tracking-[0.15em] hover:bg-slate-50 transition-all shadow-sm active:scale-95">
-                            <span class="text-xs">✉️</span>
-                            <span data-i18n="send_email">Send Email</span>
-                        </a>
+                <!-- Stats & Feedback -->
+                <section class="stats-section bg-slate-50/50 rounded-3xl p-8 border border-slate-100 shadow-inner">
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-8">
+                        <div class="flex gap-12">
+                            <div class="text-center sm:text-left">
+                                <span data-i18n="total_visits"
+                                    class="block text-[10px] font-black uppercase text-slate-400 tracking-widest">Total
+                                    Visits</span>
+                                <span id="pageViews" class="text-2xl font-black text-slate-900">...</span>
+                            </div>
+                            <div class="text-center sm:text-left">
+                                <span data-i18n="families_helped"
+                                    class="block text-[10px] font-black uppercase text-slate-400 tracking-widest">Families
+                                    Helped</span>
+                                <span id="helpfulCount" class="text-2xl font-black text-slate-900">...</span>
+                            </div>
+                        </div>
+                        <button id="helpfulBtn"
+                            class="bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-blue-500/20 active:scale-95 transition-all">
+                            <span data-i18n="helpful_button" class="btn-text">This Tool Helped Me</span>
+                        </button>
                     </div>
                 </section>
 
-                <!-- Authoritative Reference Section -->
-                <section class="space-y-6 pt-6 sm:pt-8" aria-labelledby="sources-heading">
-                    <div
-                        class="glass-card rounded-2xl sm:rounded-[2.5rem] p-6 sm:p-10 border border-slate-100 shadow-xl bg-white/50">
-                        <h4 id="sources-heading" data-i18n="sources_title"
-                            class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-800 leading-none mb-6">
-                            Verified Independent Data Sources
-                        </h4>
-                        <div id="sourcesList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-
-                        <div id="authoritativeFooter" class="mt-8 border-t border-slate-200/50 pt-6">
-                            <p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold">
-                                100% Brand-Agnostic Verification | Ground Truth Policy
+                <!-- Footer -->
+                <footer class="pt-12 pb-10 sm:pb-12 space-y-6 border-t border-slate-100">
+                    <div class="text-center text-slate-300 text-[10px] space-y-4 font-medium uppercase tracking-widest">
+                        <div class="max-w-2xl mx-auto space-y-2 opacity-60">
+                            <p><strong data-i18n="medical_disclaimer_title"></strong>: <span
+                                    data-i18n="medical_disclaimer_body"></span></p>
+                            <p><strong data-i18n="legal_disclaimer_title"></strong>: <span
+                                    data-i18n="legal_disclaimer_body"></span></p>
+                            <p><strong data-i18n="conduct_disclaimer_title"></strong>: <span
+                                    data-i18n="conduct_disclaimer_body"></span></p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100/10">
+                            <p data-i18n="footer_copyright">© 2026 SafeFeed Action • Emergency Public Interest Project
                             </p>
+                            <p data-i18n="footer_desc" class="text-[9px] text-slate-400">A temporary emergency response
+                                by
+                                MilesXLab (A Tech Dad). This
+                                project will be archived once the recall crisis stabilizes.</p>
                         </div>
                     </div>
-                </section>
-            </div>
-
-            <!-- Stats & Feedback -->
-            <section class="stats-section bg-slate-50/50 rounded-3xl p-8 border border-slate-100 shadow-inner">
-                <div class="flex flex-col sm:flex-row justify-between items-center gap-8">
-                    <div class="flex gap-12">
-                        <div class="text-center sm:text-left">
-                            <span data-i18n="total_visits"
-                                class="block text-[10px] font-black uppercase text-slate-400 tracking-widest">Total
-                                Visits</span>
-                            <span id="pageViews" class="text-2xl font-black text-slate-900">...</span>
-                        </div>
-                        <div class="text-center sm:text-left">
-                            <span data-i18n="families_helped"
-                                class="block text-[10px] font-black uppercase text-slate-400 tracking-widest">Families
-                                Helped</span>
-                            <span id="helpfulCount" class="text-2xl font-black text-slate-900">...</span>
-                        </div>
-                    </div>
-                    <button id="helpfulBtn"
-                        class="bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg shadow-blue-500/20 active:scale-95 transition-all">
-                        <span data-i18n="helpful_button" class="btn-text">This Tool Helped Me</span>
-                    </button>
-                </div>
-            </section>
-
-            <!-- Footer -->
-            <footer class="pt-12 pb-10 sm:pb-12 space-y-6 border-t border-slate-100">
-                <div class="text-center text-slate-300 text-[10px] space-y-2 font-medium uppercase tracking-widest">
-                    <p data-i18n="footer_copyright">© 2026 SafeFeed Action • Emergency Public Interest Project</p>
-                    <p data-i18n="footer_desc" class="text-[9px] text-slate-400">A temporary emergency response by
-                        MilesXLab (A Tech Dad). This
-                        project will be archived once the recall crisis stabilizes.</p>
-                </div>
-            </footer>
+                </footer>
         </main>
     </div>
 
@@ -279,6 +316,7 @@
     </div>
 
     <script src="js/data.js"></script>
+    <script src="js/protocols.js"></script>
     <script src="js/hotline.js"></script>
     <script src="js/script.js"></script>
 </body>

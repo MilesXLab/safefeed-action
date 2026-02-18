@@ -8,11 +8,11 @@ const I18N = {
         idle: "Enter the batch code found on your product (e.g., at the bottom or top of the packaging) for verification.",
         searching: "Comparing against official regulatory records...",
 
-        status_critical: "STRICT MATCH: OFFICIAL RECALL",
-        desc_critical: "This specific batch code is explicitly listed in the official recall announcement.",
+        status_critical: "MATCHED: OFFICIAL RECALL RECORD",
+        desc_critical: "This batch code corresponds to an entry in the official recall database.",
 
-        status_caution: "OFFICIAL SERIES RECALL",
-        desc_caution: "Your code starts with a production series prefix that has been recalled in its entirety by official sources.",
+        status_caution: "SERIES MATCH: OFFICIAL RECALL RECORD",
+        desc_caution: "This batch belongs to a production series identified by authorities as recalled.",
 
         status_none: "NO MATCH IN OFFICIAL GLOBAL LIST",
         desc_none: "This specific code is not currently found in our multi-brand database of officially recalled batches.",
@@ -62,6 +62,12 @@ const I18N = {
         about_body: "\"I’m an SRE and a dad. I built this because I was searching batch numbers at midnight just like you. I moved from a 'Nestlé-only' name to 'SafeFeed Action' because keeping a brand-specific name was misleading while other brands were also being recalled. This is a non-commercial, public-interest response.\"",
         footer_copyright: "© 2026 SafeFeed Action • Emergency Public Interest Project",
         footer_desc: "A temporary emergency response by MilesXLab (A Tech Dad). This project will be archived once the recall crisis stabilizes.",
+        medical_disclaimer_title: "Non-Medical Advice Notice",
+        medical_disclaimer_body: "The observation checklists provided are for recording data to report to a professional pediatrician. This system does NOT provide medical diagnosis, treatment advice, or prescriptions. If your child feels unwell, consult a doctor immediately.",
+        legal_disclaimer_title: "Legal Neutrality Disclaimer",
+        legal_disclaimer_body: "All data indexed is sourced from official government authorities. Claim templates are for reference only and do not constitute legal aid. Final authority rests with government regulatory bodies.",
+        conduct_disclaimer_title: "Usage Ethics & Anti-Extortion",
+        conduct_disclaimer_body: "This tool is for legitimate safety verification only. Use of this data for malicious extortion or false claims is strictly prohibited and may involve legal consequences.",
         batch_guide_btn: "How to identify codes?",
         batch_guide_title: "Batch Identification Guide",
         batch_guide_date: "THT / Best Before Date",
@@ -69,7 +75,21 @@ const I18N = {
         batch_guide_serial: "Standard Batch (8-10 Characters)",
         batch_guide_serial_desc: "Location: Base or Lid. Mix of letters/numbers (e.g., 43490748G1).",
         batch_guide_series: "Recall Series Prefix",
-        batch_guide_series_desc: "Location: First part of the batch code. Usually 4 digits."
+        batch_guide_series_desc: "Location: First part of the batch code. Usually 4 digits.",
+
+        // Risk Defense Kernel
+        severity_l1: "HIGH PRIORITY SAFETY CONCERN",
+        severity_l2: "QUALITY CONCERN",
+        severity_l3: "COMPLIANCE NOTICE",
+        remediation_btn: "VIEW PRECAUTIONARY ACTION GUIDE",
+        consumed_warning: "⚠️ PRODUCT ALREADY CONSUMED?",
+        consumed_title: "Precautionary Documentation Protocol",
+        copy_script_btn: "COPY CONSUMER INQUIRY TEMPLATE",
+        copy_success: "TEMPLATE COPIED!",
+        start_timer_btn: "START 48H OBSERVATION LOG",
+        timer_running: "OBSERVATION PERIOD ACTIVE",
+        timer_remaining: "REMAINING: ",
+        timer_expired: "OBSERVATION PERIOD COMPLETE"
     },
     zh: {
         project_name: "SafeFeed Action (全球盾)",
@@ -79,14 +99,14 @@ const I18N = {
         idle: "请输入产品包装（如罐底或瓶盖）上的批次编码进行严格核对。",
         searching: "正在比对官方监管部门录入的批次...",
 
-        status_critical: "!!! 官方精确匹配：确认召回 !!!",
-        desc_critical: "该批次号明确出现在官方公布的召回名单中。",
+        status_critical: "匹配成功：官方召回记录",
+        desc_critical: "该批次号对应官方公布的召回名单中的记录。",
 
-        status_caution: "!!! 官方整线召回：系列匹配 !!!",
-        desc_caution: "您的批次号开头属于官方公告明确指定的整线召回系列码。",
+        status_caution: "系列匹配：官方召回记录",
+        desc_caution: "该批次属于监管部门通告的整线/系列召回范围。",
 
-        status_none: "全球官方名单未命中",
-        desc_none: "在当前录入的多品牌官方召回名单中未找到该批次。注：非保修证明，请以官方客服为准。",
+        status_none: "未匹配到官方实时记录",
+        desc_none: "在当前多品牌官方数据库中未命中该批次。请注意：核查结果不作为安全性唯一保证。",
 
         series_notice: "官方监管说明：监管部门对以 “[Prefix]” 开头的整条生产线/生产系列下达了召回令，因此该系列下所有产品均在受影响范围。",
 
@@ -133,14 +153,37 @@ const I18N = {
         about_body: "“我是一个 SRE，也是一个爸爸。我开发这个工具是因为我曾像你一样，在午夜搜索批次编号。我将项目从原来的‘雀巢专用名称’更名为‘SafeFeed Action’，是因为其他品牌也在发生召回，维持品牌特定的名称会产生误导。这是一个非商业性的、公益性质的应急响应项目。”",
         footer_copyright: "© 2026 SafeFeed Action • 紧急公益项目",
         footer_desc: "由 MilesXLab (一位技术背景的爸爸) 发起的临时应急响应。一旦召回危机稳定，本项目将被归档。",
+        medical_disclaimer_title: "非医学诊断声明",
+        medical_disclaimer_body: "本工具提供的监测清单仅供家长记录观察数据，以便就医时向专业医生汇报。本系统不提供任何医学诊断、治疗建议或处方建议。若孩子出现不适，请立即前往正规医院儿科就诊。",
+        legal_disclaimer_title: "法律中立性声明",
+        legal_disclaimer_body: "本系统引用的数据均来自全球官方监管部门。索赔模板仅基于公共法律条款提供话术参考，不构成任何形式的法律援助或代理。最终解释权归政府监管部门所有。",
+        conduct_disclaimer_title: "反恶意讹诈协议",
+        conduct_disclaimer_body: "本工具仅限用于合法的产品安全核查。严禁非法利用本系统数据进行任何形式的恶意讹诈或造谣。若发现恶意使用，品牌方保留通过法律手段追究责任的权利。",
         batch_guide_btn: "如何识别批次？",
         batch_guide_title: "批次与位置核对指南",
+        brand_guide_aptamil: "爱他美：批次码通常位于罐底蓝色色块区域，或盖子边缘。",
+        brand_guide_nestle: "雀巢：批次码位于罐底，通常伴随生产日期和保质期。",
+        brand_guide_cowgate: "牛栏：通常位于罐底或背面下方的喷码区。",
         batch_guide_date: "THT / 保质期（日期）",
         batch_guide_date_desc: "位置：罐底。格式如 DD/MM/YYYY (例: 27/02/2027)。",
         batch_guide_serial: "标准编码 (8-10位)",
         batch_guide_serial_desc: "位置：罐底或瓶盖。字母与数字组合 (例: 43490748G1)。",
         batch_guide_series: "整线系列前缀 (4位)",
-        batch_guide_series_desc: "位置：批次编码的前4位。官方通告整线风险时使用。"
+        batch_guide_series_desc: "位置：批次编码的前4位。官方通告整线风险时使用。",
+
+        // Risk Defense Kernel
+        severity_l1: "重点安全注意",
+        severity_l2: "质量预警",
+        severity_l3: "合规性信息",
+        remediation_btn: "查看预防性处理指南",
+        consumed_warning: "⚠️ 产品已被食用？",
+        consumed_title: "预防性存证协议",
+        copy_script_btn: "复制消费者咨询话术模板",
+        copy_success: "模板已复制！",
+        start_timer_btn: "开启 48小时留观记录",
+        timer_running: "留观记录中",
+        timer_remaining: "剩余时间: ",
+        timer_expired: "留观记录周期已完成"
     }
 };
 
@@ -643,8 +686,11 @@ function renderResult(type, code, matches = []) {
         title: t.status_none,
         desc: t.desc_none,
         sourceBtn: "",
-        seriesLabel: ""
+        seriesLabel: "",
+        severityBadge: ""
     };
+
+    const isBacillus = itemData && (itemData.reason.toLowerCase().includes('cereus') || itemData.reason.toLowerCase().includes('cereulide') || itemData.reason.includes('芽孢'));
 
     if (type === 'critical' || type === 'caution') {
         const isCritical = type === 'critical';
@@ -652,6 +698,10 @@ function renderResult(type, code, matches = []) {
         const themeHex = isCritical ? "#B91C1C" : "#D97706";
         const borderColor = isCritical ? "border-red-600" : "border-amber-500";
         const bgColor = isCritical ? "bg-red-50" : "bg-amber-50";
+
+        const sevKey = itemData ? (itemData.sev || (isCritical ? 'L1' : 'L2')) : 'L1';
+        const sevLabel = t[`severity_${sevKey.toLowerCase()}`];
+        const sevColor = sevKey === 'L1' ? 'bg-red-600' : 'bg-amber-500';
 
         config = {
             bg: bgColor,
@@ -661,6 +711,18 @@ function renderResult(type, code, matches = []) {
             bottleStatus: isCritical ? "status-danger" : "status-warning",
             title: isCritical ? t.status_critical : t.status_caution,
             desc: isCritical ? t.desc_critical : t.desc_caution,
+            severityBadge: `
+                <div class="absolute top-4 right-4 z-30">
+                    <span class="${sevColor} text-white text-[9px] font-black px-3 py-1 rounded-full shadow-lg border border-white/20">
+                         ${sevLabel}
+                    </span>
+                </div>
+            `,
+            archiveBtn: hasMatches && itemData.au ? `
+                <a href="${itemData.au}" target="_blank" class="block w-full text-center py-3 bg-slate-100 text-slate-600 rounded-xl text-[10px] font-bold border border-slate-200 mt-2">
+                    🏛️ VIEW WEB ARCHIVE (PERMANENT)
+                </a>
+            ` : "",
             seriesLabel: type === 'caution' ? `
                 <div class="mt-4 p-4 bg-amber-100 border-l-4 border-amber-600 rounded-lg text-xs text-amber-950 leading-relaxed font-semibold">
                     ${t.series_notice.replace('[Prefix]', code)}
@@ -671,6 +733,93 @@ function renderResult(type, code, matches = []) {
                 </a>
             ` : ""
         };
+    }
+
+    // Risk Defense Kernel Injection
+    let protocolHtml = "";
+    if (isBacillus && RISK_PROTOCOLS.BACILLUS_CEREUS) {
+        const p = RISK_PROTOCOLS.BACILLUS_CEREUS[currentLang];
+        const c = RISK_PROTOCOLS.CONSUMED_REMEDIATION[currentLang];
+        protocolHtml = `
+            <div class="mt-6 p-6 bg-slate-900 text-white rounded-[2rem] shadow-2xl space-y-6">
+                <div class="flex items-center justify-between">
+                    <h4 class="text-sm font-black uppercase tracking-widest text-blue-400">${p.title}</h4>
+                    <span class="bg-blue-500/20 text-blue-400 text-[9px] font-black px-2 py-1 rounded border border-blue-500/30">KERNEL ACTIVE</span>
+                </div>
+
+                <!-- Technical Defense -->
+                <div class="space-y-2">
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">${p.tech_defense.title}</p>
+                    <p class="text-[11px] text-slate-300 leading-relaxed opacity-90">${p.tech_defense.content}</p>
+                </div>
+
+                <!-- Monitoring Tabs -->
+                <div class="space-y-3">
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">${p.monitoring.title}</p>
+                    <div class="grid grid-cols-2 gap-2">
+                        ${p.monitoring.types.map(m => `
+                            <div class="p-3 bg-white/5 rounded-xl border border-white/10 text-center">
+                                <p class="text-[10px] font-black text-blue-400">${m.name}</p>
+                                <p class="text-[9px] font-bold text-white">${m.period}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="space-y-1.5 pt-2">
+                        ${p.monitoring.checkboxes.map(check => `
+                            <div class="flex items-start gap-2 text-[10px] text-slate-400">
+                                <span class="text-blue-500">☐</span>
+                                <p>${check}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <!-- Consumed UI -->
+                <div class="pt-4 border-t border-white/10 space-y-4">
+                    <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full flex items-center justify-between text-xs font-black text-red-400 hover:text-red-300 transition-colors">
+                        <span>${t.consumed_warning}</span>
+                        <span>↓</span>
+                    </button>
+                    <div class="hidden mt-3 p-4 bg-red-500/10 border border-red-500/30 rounded-2xl text-[10px] text-red-100 leading-relaxed space-y-4">
+                        <div class="mb-4 pb-4 border-b border-red-500/20">
+                            <p class="font-black text-amber-400 uppercase tracking-tighter mb-1">${t.medical_disclaimer_title}</p>
+                            <p class="opacity-70 text-[9px] leading-tight">${t.medical_disclaimer_body}</p>
+                        </div>
+                        
+                        <p class="font-black mb-1 uppercase tracking-wider">${t.consumed_title}</p>
+                        <p>${c.action}</p>
+                        
+                        <!-- Observation Timer -->
+                        <div id="observation-timer-container" class="p-4 bg-black/40 rounded-xl border border-red-500/20">
+                            <div id="timer-display" class="hidden text-center space-y-1 mb-3">
+                                <p class="text-[9px] font-black text-slate-500 uppercase tracking-widest">${t.timer_running}</p>
+                                <p id="timer-countdown" class="text-xl font-black text-red-500 tabular-nums">48:00:00</p>
+                            </div>
+                            <button id="start-timer-btn" onclick="startObservationTimer()" class="w-full py-2 bg-red-600 shadow-lg text-white text-[10px] font-black rounded-lg active:scale-95 transition-all">
+                                ⏱️ ${t.start_timer_btn}
+                            </button>
+                        </div>
+
+                        <!-- Claim Script Automation -->
+                        <div class="space-y-2">
+                            <button onclick="copyClaimScript('${itemData.product}', '${itemData.code}')" class="w-full py-3 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-[10px] font-black rounded-xl transition-all">
+                                📋 ${t.copy_script_btn}
+                            </button>
+                            <p class="text-[8px] text-red-300/60 leading-tight italic px-1">
+                                * ${t.legal_disclaimer_body}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Documentation -->
+                <div class="p-4 bg-blue-500/10 rounded-2xl space-y-2">
+                    <p class="text-[10px] font-black text-blue-400 uppercase tracking-widest">${p.claim.title}</p>
+                    <p class="text-[9px] text-blue-200/70 border-b border-blue-500/20 pb-2 mb-2 italic">${p.claim.rules}</p>
+                    ${p.claim.log_items.map(item => `<p class="text-[10px] flex items-center gap-2"><span class="w-1 h-1 bg-blue-400 rounded-full"></span>${item}</p>`).join('')}
+                </div>
+            </div>
+        `;
     }
 
     // MULTI-RESULT RENDERING LOGIC (v4.0)
@@ -737,6 +886,7 @@ function renderResult(type, code, matches = []) {
                 <div class="pt-2">
                     ${getHotlineButtons(matches[0])}
                 </div>
+                ${protocolHtml}
             </div>
         `;
     } else {
@@ -772,15 +922,18 @@ function renderResult(type, code, matches = []) {
                 <div class="space-y-4 pt-2">
                     <div class="grid grid-cols-1 gap-3">
                         ${config.sourceBtn}
+                        ${config.archiveBtn || ''}
                         ${getHotlineButtons(itemData)}
                     </div>
                 </div>
+                ${protocolHtml}
             </div>
         ` : '';
     }
 
     resultsContainer.innerHTML = `
         <div class="glass-card rounded-[2.5rem] overflow-hidden border-2 ${config.border} ${type === 'critical' ? 'alarm-burst alarm-critical' : 'slide-up'} shadow-2xl relative ${config.bg}">
+            ${config.severityBadge}
             <!-- Explosive Flash Overlay -->
             ${type === 'critical' ? '<div class="flash-overlay"></div>' : ''}
             
@@ -1042,3 +1195,78 @@ helpfulBtn.addEventListener('click', async () => {
 });
 
 initializeStats();
+
+// --- RISK DEFENSE KERNEL HELPERS ---
+
+function copyClaimScript(product, batch) {
+    const p = RISK_PROTOCOLS.BACILLUS_CEREUS[currentLang];
+    let script = p.claim.script_template
+        .replace(/\[PRODUCT\]/g, product)
+        .replace(/\[BATCH\]/g, batch);
+
+    navigator.clipboard.writeText(script).then(() => {
+        const btn = event.currentTarget;
+        const originalText = btn.innerText;
+        btn.innerText = "✅ " + I18N[currentLang].copy_success;
+        btn.classList.add('bg-green-600/20', 'border-green-500/50', 'text-green-400');
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.classList.remove('bg-green-600/20', 'border-green-500/50', 'text-green-400');
+        }, 2000);
+    });
+}
+
+let observationInterval = null;
+
+function startObservationTimer() {
+    const durationHours = 48;
+    const endTime = Date.now() + (durationHours * 60 * 60 * 1000);
+    localStorage.setItem('safefeed_observation_end', endTime);
+    updateTimerUI();
+}
+
+function updateTimerUI() {
+    const endTime = localStorage.getItem('safefeed_observation_end');
+    const timerDisplay = document.getElementById('timer-display');
+    const timerCountdown = document.getElementById('timer-countdown');
+    const startBtn = document.getElementById('start-timer-btn');
+    const t = I18N[currentLang];
+
+    if (!endTime || !timerDisplay) return;
+
+    if (observationInterval) clearInterval(observationInterval);
+
+    const update = () => {
+        const now = Date.now();
+        const diff = endTime - now;
+
+        if (diff <= 0) {
+            clearInterval(observationInterval);
+            localStorage.removeItem('safefeed_observation_end');
+            timerCountdown.innerText = "00:00:00";
+            timerCountdown.classList.replace('text-red-500', 'text-green-500');
+            startBtn.innerText = "✨ " + t.timer_expired;
+            startBtn.disabled = true;
+            return;
+        }
+
+        timerDisplay.classList.remove('hidden');
+        startBtn.classList.add('hidden');
+
+        const h = Math.floor(diff / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+        timerCountdown.innerText = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    };
+
+    update();
+    observationInterval = setInterval(update, 1000);
+}
+
+// Check for existing timer on load
+window.addEventListener('load', () => {
+    if (localStorage.getItem('safefeed_observation_end')) {
+        setTimeout(updateTimerUI, 500); // Small delay to ensure UI is ready if we are in results
+    }
+});
