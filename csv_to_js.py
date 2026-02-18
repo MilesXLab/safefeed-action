@@ -229,17 +229,31 @@ OFFICIAL_SOURCES = [
 #   {date_zh}       - generation date in Chinese (e.g. 2026年2月11日)
 ANNOUNCEMENTS = [
     {
-        "id": "recall_expansion_2026_02_08",
-        "linkUrl": "https://www.produktwarnung.eu/2026/02/05/rueckruf-gesundheitsgefahr-danone-ruft-aptamil-babynahrung-zurueck/36778",
+        "id": "chinese_new_year_2026",
+        "linkUrl": "https://github.com/milesxlab/safefeed-action",
         "en": {
-            "title": "URGENT: MASSIVE RECALL EXPANSION ({date_en})",
-            "body": "The recall has expanded globally across multiple brands including {brand_list_en} and more. Our database now contains {batch_count} verified batches from {region_count} regions to ensure comprehensive infant safety.",
-            "link": "Read Official Notice"
+            "title": "🏮 HAPPY CHINESE NEW YEAR",
+            "body": "Wishing all families a healthy and safe 2026. May all babies grow up strong and happy!",
+            "link": "SafeFeed Mission"
         },
         "zh": {
-            "title": "紧急状态：召回范围剧烈扩大 ({date_zh})",
-            "body": "召回范围已在全球多个品牌中剧烈扩大，包括 {brand_list_zh} 等。本工具已同步全球 {region_count} 个国家和地区的官方数据，当前包含 {batch_count} 个已核实批次，确保全品牌安全覆盖。",
-            "link": "查看官方公告"
+            "title": "🏮 中国新春快乐 · 阖家安康",
+            "body": "SafeFeed 祝愿全球所有家庭中国新春快乐。愿天下的宝宝都能在安全守护下，健康、茁壮地成长！",
+            "link": "项目初衷"
+        }
+    },
+    {
+        "id": "data_integrity_update_2026_02_16",
+        "linkUrl": "https://www.food.gov.uk/news-alerts/alert/fsa-prin-03-2026",
+        "en": {
+            "title": "DATA INTEGRITY & SYNC UPDATE ({date_en})",
+            "body": "Database standardized to global formats. Now covering {batch_count} verified batches across {region_count} regions for {brand_list_en}.",
+            "link": "View Latest Status"
+        },
+        "zh": {
+            "title": "数据质量与全球同步更新 ({date_zh})",
+            "body": "全量数据已完成全球标准化对齐。当前已核实来自 {region_count} 个国家/地区的 {batch_count} 个召回批次，覆盖 {brand_list_zh} 等全品牌。",
+            "link": "查看最新状态"
         }
     }
 ]
