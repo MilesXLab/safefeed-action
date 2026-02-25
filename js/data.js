@@ -3,7 +3,7 @@
 
 const RECALL_METADATA = {
   "version": "5.0.0 (Risk Defense Kernel)",
-  "lastUpdated": "2026-02-24 17:59 (PST)",
+  "lastUpdated": "2026-02-24 18:01 (PST)",
   "coverage": "28 Regions - Official Government Sources Only",
   "totalCount": 1862,
   "authority": "FSA, FSAI, AGES, SFA, FDA, ANVISA, COFEPRIS, MZD, AFSCA, RappelConso, FSANZ, SAMR, CFS",
