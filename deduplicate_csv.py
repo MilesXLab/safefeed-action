@@ -1,20 +1,43 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-SafeFeed Action - Global Infant Formula Recall Verification Tool
-CSV Deduplication Utility
-
-Author: TechDadShanghai
-License: Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
-Copyright (c) 2026 TechDadShanghai
-"""
-
 import csv
 import os
 import sys
 from collections import OrderedDict
+import re
 
 DB_FILE = 'recall_database.csv'
+
+BRANDS = ['SMA', 'NAN', 'Nidina', 'Nativa', 'Alfamino', 'S-26', 'Aptamil', 'Cow & Gate', 'Nutrilon', 'Milumil', 'Beba', 'ByHeart', 'Kendamil', 'Profutura', 'Guigoz', 'Nidal', 'Illuma', 'Bimbosan', 'Bebelo']
+
+def get_canonical_brand(brand_raw, sub_brand_raw, product_raw):
+    content = " ".join([brand_raw, sub_brand_raw, product_raw]).upper()
+    for b in BRANDS:
+        if b.upper() in content:
+            return b
+    return brand_raw.strip()
+
+def normalize_product(name):
+    # Remove "Milk", "800g", "Stage X" variations to help matching
+    name = name.upper()
+    name = re.sub(r'\d+G', '', name)
+    name = re.sub(r'MILK', '', name)
+    name = re.sub(r'STAGE\s*\d+', '', name)
+    name = re.sub(r'\s+', ' ', name).strip()
+    return name
+
+def clean_and_join(existing_val, new_val, separator='/'):
+    if not existing_val: return new_val.strip()
+    if not new_val: return existing_val.strip()
+    items = []
+    for s in [existing_val, new_val]:
+        parts = re.split(r'[/,]', s)
+        for p in parts:
+            p = p.strip()
+            if p and p not in items:
+                items.append(p)
+    items.sort()
+    return separator.join(items)
 
 def deduplicate():
     if not os.path.exists(DB_FILE):
@@ -29,27 +52,32 @@ def deduplicate():
         reader = csv.DictReader(f)
         fieldnames = reader.fieldnames
         for row in reader:
-            if not row.get('code'):
-                continue
+            if not row.get('code'): continue
+            
             code = row['code'].strip()
-            sub_brand = row['subBrand'].strip()
-            product = row['product'].strip()
-            key = (code, sub_brand, product)
+            brand = get_canonical_brand(row.get('brand',''), row.get('subBrand',''), row.get('product',''))
+            product_norm = normalize_product(row.get('product',''))
+            
+            # Key: (Code, Brand Family, Normalized Product Name)
+            key = (code, brand, product_norm)
+            
+            # Update the row with the canonical brand for consistency
+            row['brand'] = brand
             
             if key in batches:
                 existing = batches[key]
                 # Merge region
-                if row['country'] != existing['country']:
-                    if row['country'] not in existing['country']:
-                        existing['country'] = f"{existing['country']}/{row['country']}"
+                existing['country'] = clean_and_join(existing['country'], row['country'])
                 
-                # Update link if new is deeper
-                if len(row['docUrl']) > len(existing['docUrl']) and 'http' in row['docUrl']:
+                # Keep the longer product name for display
+                if len(row['product']) > len(existing['product']):
+                    existing['product'] = row['product']
+                
+                # Documentation priority
+                if 'resources/' in row['docUrl'] and 'resources/' not in existing['docUrl']:
                     existing['docUrl'] = row['docUrl']
-                
-                # Update source if new is more specific
-                if len(row['sourceDisplay']) > len(existing['sourceDisplay']):
-                    existing['sourceDisplay'] = row['sourceDisplay']
+                elif len(row['docUrl']) > len(existing['docUrl']):
+                    existing['docUrl'] = row['docUrl']
                 
                 removed_count += 1
             else:
@@ -61,7 +89,7 @@ def deduplicate():
         for row in batches.values():
             writer.writerow(row)
     
-    print(f"Deduplication complete. Removed {removed_count} duplicate entries.")
+    print(f"Deduplication complete. Combined {removed_count} redundant entries.")
 
 if __name__ == "__main__":
     deduplicate()
