@@ -8,14 +8,32 @@ import re
 
 DB_FILE = 'recall_database.csv'
 
-BRANDS = ['SMA', 'NAN', 'Nidina', 'Nativa', 'Alfamino', 'S-26', 'Aptamil', 'Cow & Gate', 'Nutrilon', 'Milumil', 'Beba', 'ByHeart', 'Kendamil', 'Profutura', 'Guigoz', 'Nidal', 'Illuma', 'Bimbosan', 'Bebelo']
+PARENT_GROUPS = {
+    # Nestlé Group
+    'SMA': 'Nestlé', 'NAN': 'Nestlé', 'Nidina': 'Nestlé', 'Nativa': 'Nestlé', 
+    'Alfamino': 'Nestlé', 'S-26': 'Nestlé', 'Beba': 'Nestlé', 'Guigoz': 'Nestlé', 
+    'Nidal': 'Nestlé', 'Illuma': 'Nestlé', 'Lactogen': 'Nestlé', 'Nestogeno': 'Nestlé', 
+    'Little Steps': 'Nestlé', 'Nestlé': 'Nestlé',
+    
+    # Danone Group
+    'Aptamil': 'Danone', 'Cow & Gate': 'Danone', 'Nutrilon': 'Danone', 
+    'Milumil': 'Danone', 'Milupa': 'Danone', 'Milura': 'Danone', 
+    'Almiron': 'Danone', 'Dumex': 'Danone', 'Bebelac': 'Danone', 
+    'Mellin': 'Danone', 'Gallia': 'Danone', 'Profutura': 'Danone', 
+    'Danone': 'Danone',
+    
+    # Others
+    'Alula': 'Sanulac', 'Sanulac': 'Sanulac', 'Lactalis': 'Lactalis',
+    'Bimbosan': 'Hero', 'Bebelo': 'Hero', 'Hero': 'Hero',
+    'Babybio': 'Vitagermine', 'Kendamil': 'Kendamil', 'ByHeart': 'ByHeart'
+}
 
 def get_canonical_brand(brand_raw, sub_brand_raw, product_raw):
     content = " ".join([brand_raw, sub_brand_raw, product_raw]).upper()
-    for b in BRANDS:
-        if b.upper() in content:
-            return b
-    return brand_raw.strip()
+    for sub_b, parent in PARENT_GROUPS.items():
+        if sub_b.upper() in content:
+            return parent
+    return brand_raw.strip() or sub_brand_raw.strip() or "Other"
 
 def normalize_product(name):
     # Remove "Milk", "800g", "Stage X" variations to help matching
