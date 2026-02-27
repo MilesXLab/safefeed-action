@@ -3,7 +3,7 @@
 
 const RECALL_METADATA = {
   "version": "5.0.0 (Risk Defense Kernel)",
-  "lastUpdated": "2026-02-26 23:27 (PST)",
+  "lastUpdated": "2026-02-26 23:43 (PST)",
   "coverage": "28 Regions - Official Government Sources Only",
   "totalCount": 1863,
   "authority": "FSA, FSAI, AGES, SFA, FDA, ANVISA, COFEPRIS, MZD, AFSCA, RappelConso, FSANZ, SAMR, CFS",
@@ -115,12 +115,12 @@ const ANNOUNCEMENTS = [
     "linkUrl": "https://www.food.gov.uk/news-alerts/alert/fsa-prin-03-2026",
     "en": {
       "title": "GLOBAL BATCH PRECISION UPDATE (FEB 26, 2026)",
-      "body": "Optimization complete: Cross-region batches merged by SKU. Now covering 1863 verified batches across 28 regions for Danone, Hero, Kendamil, La Marque en Moins, Lactalis, Nestlé, Sanulac, Vitagermine with 100% brand-batch precision.",
+      "body": "Optimization complete: Cross-region batches merged by SKU. Now covering 1863 verified batches across 28 regions for 1, AR, AR 2, Alfamino, Almiron, Alula, Aptamil, BEBA, BEBELO, Babybio, Bebelac, Bimbosan, Classic, Cow & Gate, Danone, Dumex, Guigoz, Hero, Illuma, Infant, Kendamil, La Marque en Moins, Lactalis, Lactogen, Little Steps, Milumil, Milura, NAN, Nankid, Nestlé, Nestlé Nutrition, Nestogeno, Nidal, Nutrilon, Nutrilon 1, Nutrilon 2, Nutrilon 3, Nutrilon Content 1, Optipro 1, Picot, Profutura, Profutura Duobalans 1, Profutura Duobalans 2, Pronutra, S-26, SMA, Sanulac, Tabs 1, Tabs 2, Vitagermine with 100% brand-batch precision.",
       "link": "Official Docs"
     },
     "zh": {
       "title": "全球批次精准化重整 (2026年2月26日)",
-      "body": "重整完毕：跨区域批次已完成 SKU 级合并，并细化同批次多品牌条目。当前覆盖 28 个地区共计 1863 个权威核实批次（含 Danone, Hero, Kendamil, La Marque en Moins, Lactalis, Nestlé, Sanulac, Vitagermine）。",
+      "body": "重整完毕：跨区域批次已完成 SKU 级合并，并细化同批次多品牌条目。当前覆盖 28 个地区共计 1863 个权威核实批次（含 1, AR, AR 2, Alfamino, Almiron, Alula, Aptamil, BEBA, BEBELO, Babybio, Bebelac, Bimbosan, Classic, Cow & Gate, Danone, Dumex, Guigoz, Hero, Illuma, Infant, Kendamil, La Marque en Moins, Lactalis, Lactogen, Little Steps, Milumil, Milura, NAN, Nankid, Nestlé, Nestlé Nutrition, Nestogeno, Nidal, Nutrilon, Nutrilon 1, Nutrilon 2, Nutrilon 3, Nutrilon Content 1, Optipro 1, Picot, Profutura, Profutura Duobalans 1, Profutura Duobalans 2, Pronutra, S-26, SMA, Sanulac, Tabs 1, Tabs 2, Vitagermine）。",
       "link": "官方文献"
     }
   }

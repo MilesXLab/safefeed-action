@@ -896,7 +896,7 @@ function renderResult(type, code, matches = []) {
                 <div class="grid grid-cols-2 gap-4 py-4 border-t border-slate-100">
                     <div>
                         <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">${t.label_brand}</p>
-                        <p class="text-sm font-black text-slate-800">${itemData.subBrand || 'Global Brand'}</p>
+                        <p class="text-sm font-black text-slate-800">${itemData.brand === itemData.subBrand ? itemData.brand : itemData.brand + ' (' + itemData.subBrand + ')'}</p>
                     </div>
                     <div>
                         <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">${t.label_spec}</p>
