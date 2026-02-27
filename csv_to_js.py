@@ -110,10 +110,11 @@ for b in batches:
         part = _COUNTRY_ALIASES.get(part, part)
         _unique_countries.add(part)
     brand = b['brand'].strip()
+    sub_brand = b['subBrand'].strip()
     if brand:
-        # Extract primary brand name (remove parenthetical notes like "Danone" from "Aptamil (Danone)")
-        primary = brand.split('(')[0].strip()
-        _unique_brands.add(primary)
+        _unique_brands.add(brand.split('(')[0].strip())
+    if sub_brand:
+        _unique_brands.add(sub_brand)
 
 # Dynamic date for announcements (use data generation time in PST)
 _now_pst = datetime.now(_pst_tz) if _pst_tz else (datetime.now(timezone.utc) - timedelta(hours=8))
